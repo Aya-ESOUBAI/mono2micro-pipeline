@@ -1,0 +1,194 @@
+{
+  "summary": {
+    "totalTables": 7,
+    "totalFKs": 0,
+    "tableNames": [
+      "vets",
+      "specialties",
+      "vet_specialties",
+      "types",
+      "owners",
+      "pets",
+      "visits"
+    ]
+  },
+  "tables": {
+    "vets": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": true
+      },
+      {
+        "name": "first_name",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "last_name",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      }
+    ],
+    "specialties": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": true
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      }
+    ],
+    "vet_specialties": [
+      {
+        "name": "vet_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "primaryKey": false
+      },
+      {
+        "name": "specialty_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "primaryKey": false
+      }
+    ],
+    "types": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": true
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      }
+    ],
+    "owners": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": true
+      },
+      {
+        "name": "first_name",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "last_name",
+        "type": "VARCHAR_IGNORECASE",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "address",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "city",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "telephone",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      }
+    ],
+    "pets": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": true
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "birth_date",
+        "type": "DATE",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "type_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "primaryKey": false
+      },
+      {
+        "name": "owner_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false
+      }
+    ],
+    "visits": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": true
+      },
+      {
+        "name": "pet_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "visit_date",
+        "type": "DATE",
+        "nullable": true,
+        "primaryKey": false
+      },
+      {
+        "name": "description",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false
+      }
+    ]
+  },
+  "foreignKeys": [],
+  "tableGraph": {},
+  "domainGroups": {
+    "veterinarian": [
+      "vets",
+      "specialties",
+      "vet_specialties"
+    ],
+    "reference": [
+      "types"
+    ],
+    "owner_pet": [
+      "owners",
+      "pets"
+    ],
+    "appointment": [
+      "visits"
+    ]
+  }
+}

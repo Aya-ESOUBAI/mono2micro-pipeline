@@ -1,0 +1,15 @@
+class_name,related_table,calls_out,calls_in,deps_unique,has_autowired,db_columns,db_fk_out,db_fk_in,db_relations,log_frequency,is_controller,is_service,is_repository
+Owner,owners,20,0,0,0,6,0,0,0,4,0,0,0
+PetController,pets,50,0,0,0,5,0,0,0,2,1,0,0
+PetValidator,none,9,0,0,0,0,0,0,0,0,0,0,0
+Vet,vets,7,0,0,0,3,0,0,0,1,0,0,0
+Visit,visits,1,0,0,0,4,0,0,0,1,0,0,0
+PetClinicApplication,none,1,0,0,0,0,0,0,0,0,0,0,0
+PetClinicRuntimeHints,none,12,0,0,0,0,0,0,0,0,0,0,0
+VetController,vets,15,0,0,0,3,0,0,0,1,1,0,0
+VisitController,visits,11,0,0,0,4,0,0,0,1,1,0,0
+OwnerController,owners,36,0,0,0,6,0,0,0,4,1,0,0
+Pet,pets,1,0,0,0,5,0,0,0,2,0,0,0
+PetTypeFormatter,none,4,0,0,0,0,0,0,0,0,0,0,0
+CacheConfiguration,none,2,0,0,0,0,0,0,0,0,0,0,0
+WebConfiguration,none,3,0,0,0,0,0,0,0,0,0,0,0

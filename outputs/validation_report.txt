@@ -1,0 +1,50 @@
+╔══════════════════════════════════════════════════════╗
+║       RAPPORT DE VALIDATION — PIPELINE              ║
+╚══════════════════════════════════════════════════════╝
+
+  RÉSUMÉ
+  ────────────────────────────────────────────────────
+  Étape 1 — JavaParser Output       : ✅ OK
+  Étape 2 — Feature Extraction      : ✅ OK
+  Étape 3 — Normalization + TF-IDF  : ✅ OK
+
+  ÉTAPE 1 — JavaParser
+  ────────────────────────────────────────────────────
+  Classes analysées   : 14
+  Appels extraits     : 172
+  Types d'appels      : {'method_call': 172}
+  Tables SQL          : 7
+  Clés étrangères     : 0
+  Domaines DDD        : ['veterinarian', 'reference', 'owner_pet', 'appointment']
+  HTTP logs           : 9
+  SQL logs            : 9
+
+  ÉTAPE 2 — Feature Extraction
+  ────────────────────────────────────────────────────
+  Classes dans le CSV  : 14
+  Features numériques  : ['calls_out', 'calls_in', 'deps_unique', 'has_autowired', 'db_columns', 'db_fk_out', 'db_fk_in', 'db_relations', 'log_frequency', 'is_controller', 'is_service', 'is_repository']
+
+  ÉTAPE 3 — Normalization + TF-IDF
+  ────────────────────────────────────────────────────
+  Classes traitées        : 14
+  Features numériques     : 12
+  Tokens TF-IDF           : 14
+  Features composite total: 26
+  Poids numérique         : 0.7
+  Poids TF-IDF            : 0.3
+
+  FICHIERS PRODUITS
+  ────────────────────────────────────────────────────
+  ✅  call_graph.json         (Étape 1)                  43.8 Ko
+  ✅  db_features.json        (Étape 1)                  3.6 Ko
+  ✅  logs_features.json      (Étape 1)                  2.9 Ko
+  ✅  feature_matrix.csv      (Étape 2)                  0.8 Ko
+  ✅  feature_normalized.csv  (Étape 3)                  1.9 Ko
+  ✅  tfidf_matrix.csv        (Étape 3)                  1.4 Ko
+  ✅  composite_features.csv  (Étape 3) ← INPUT Clustering 3.2 Ko
+
+  PROCHAINE ÉTAPE
+  ────────────────────────────────────────────────────
+  composite_features.csv est prêt pour le Clustering HAC
+  → python step3b_distance_matrix.py
+  → python step3c_hac_clustering.py

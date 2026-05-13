@@ -1,0 +1,158 @@
+{
+  "summary": {
+    "totalHTTP": 9,
+    "totalSQL": 9,
+    "totalEvents": 18
+  },
+  "events": [
+    {
+      "type": "HTTP",
+      "method": "GET",
+      "endpoint": "/owners",
+      "resource": "owners",
+      "lineNumber": 1
+    },
+    {
+      "type": "SQL",
+      "table": "owners",
+      "operation": "SELECT",
+      "lineNumber": 2
+    },
+    {
+      "type": "HTTP",
+      "method": "GET",
+      "endpoint": "/owners/1",
+      "resource": "owners",
+      "lineNumber": 3
+    },
+    {
+      "type": "SQL",
+      "table": "owners",
+      "operation": "SELECT",
+      "lineNumber": 4
+    },
+    {
+      "type": "SQL",
+      "table": "pets",
+      "operation": "SELECT",
+      "lineNumber": 5
+    },
+    {
+      "type": "HTTP",
+      "method": "POST",
+      "endpoint": "/owners/new",
+      "resource": "owners",
+      "lineNumber": 6
+    },
+    {
+      "type": "SQL",
+      "table": "owners",
+      "operation": "INSERT",
+      "lineNumber": 7
+    },
+    {
+      "type": "HTTP",
+      "method": "GET",
+      "endpoint": "/owners/1/pets/new",
+      "resource": "pets",
+      "lineNumber": 8
+    },
+    {
+      "type": "HTTP",
+      "method": "POST",
+      "endpoint": "/owners/1/pets/new",
+      "resource": "pets",
+      "lineNumber": 9
+    },
+    {
+      "type": "SQL",
+      "table": "pets",
+      "operation": "INSERT",
+      "lineNumber": 10
+    },
+    {
+      "type": "HTTP",
+      "method": "GET",
+      "endpoint": "/owners/1/pets/1/visits/new",
+      "resource": "visits",
+      "lineNumber": 11
+    },
+    {
+      "type": "HTTP",
+      "method": "POST",
+      "endpoint": "/owners/1/pets/1/visits/new",
+      "resource": "visits",
+      "lineNumber": 12
+    },
+    {
+      "type": "SQL",
+      "table": "visits",
+      "operation": "INSERT",
+      "lineNumber": 13
+    },
+    {
+      "type": "HTTP",
+      "method": "GET",
+      "endpoint": "/vets",
+      "resource": "vets",
+      "lineNumber": 14
+    },
+    {
+      "type": "SQL",
+      "table": "vets",
+      "operation": "SELECT",
+      "lineNumber": 15
+    },
+    {
+      "type": "SQL",
+      "table": "specialties",
+      "operation": "SELECT",
+      "lineNumber": 16
+    },
+    {
+      "type": "HTTP",
+      "method": "GET",
+      "endpoint": "/owners?lastName\u003dDavis",
+      "resource": "owners",
+      "lineNumber": 17
+    },
+    {
+      "type": "SQL",
+      "table": "owners",
+      "operation": "SELECT",
+      "lineNumber": 18
+    }
+  ],
+  "endpointFrequency": {
+    "/owners": 1,
+    "/owners/1": 1,
+    "/owners/new": 1,
+    "/owners/1/pets/new": 2,
+    "/owners/1/pets/1/visits/new": 2,
+    "/vets": 1,
+    "/owners?lastName\u003dDavis": 1
+  },
+  "tableFrequency": {
+    "owners": 4,
+    "pets": 2,
+    "visits": 1,
+    "vets": 1,
+    "specialties": 1
+  },
+  "resourceTableMap": {
+    "owners": [
+      "owners",
+      "pets"
+    ],
+    "pets": [
+      "pets"
+    ],
+    "visits": [
+      "visits"
+    ],
+    "vets": [
+      "vets",
+      "specialties"
+    ]
+  }
+}
