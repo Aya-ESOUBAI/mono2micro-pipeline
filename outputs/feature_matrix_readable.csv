@@ -1,0 +1,15 @@
+Classe Java,Domaine metier,Role Spring,Table SQL liee,Appels sortants (nb methodes appelees),Appels entrants (nb classes qui appellent cette classe),Dependances injectees (Autowired/Constructeur),Nb colonnes dans la table SQL,Nb relations entre tables (cles etrangeres),Frequence dans les logs HTTP
+Owner,owner-pet-visit,Entite,owners,20,0,Non,6,0,4
+PetController,owner-pet-visit,Controleur,pets,50,0,Non,5,0,2
+PetValidator,owner-pet-visit,Validateur,pets,9,0,Non,5,0,2
+Vet,veterinaire,Entite,vets,7,0,Non,3,0,1
+Visit,owner-pet-visit,Entite,visits,1,0,Non,4,0,1
+PetClinicApplication,owner-pet-visit,Application,aucune,1,0,Non,0,0,0
+PetClinicRuntimeHints,owner-pet-visit,Application,aucune,12,0,Non,0,0,0
+VetController,veterinaire,Controleur,vets,15,0,Non,3,0,1
+VisitController,owner-pet-visit,Controleur,visits,11,0,Non,4,0,1
+OwnerController,owner-pet-visit,Controleur,owners,36,0,Non,6,0,4
+Pet,owner-pet-visit,Entite,pets,1,0,Non,5,0,2
+PetTypeFormatter,owner-pet-visit,Utilitaire,aucune,4,0,Non,0,0,0
+CacheConfiguration,systeme,Configuration,aucune,2,0,Non,0,0,0
+WebConfiguration,systeme,Configuration,aucune,3,0,Non,0,0,0

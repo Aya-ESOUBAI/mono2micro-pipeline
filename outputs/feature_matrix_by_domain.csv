@@ -1,0 +1,17 @@
+Domaine metier (Microservice candidat),Classe Java,Role Spring,Table SQL geree,Couplage sortant (appels vers autres classes),Couplage entrant (appels recus),Injecte des dependances,Frequence utilisation (logs)
+owner-pet-visit,PetController,Controleur,pets,50,0,Non,2
+owner-pet-visit,VisitController,Controleur,visits,11,0,Non,1
+owner-pet-visit,OwnerController,Controleur,owners,36,0,Non,4
+owner-pet-visit,Owner,Entite,owners,20,0,Non,4
+owner-pet-visit,Visit,Entite,visits,1,0,Non,1
+owner-pet-visit,Pet,Entite,pets,1,0,Non,2
+owner-pet-visit,PetValidator,Validateur,pets,9,0,Non,2
+owner-pet-visit,PetClinicApplication,Application,—,1,0,Non,0
+owner-pet-visit,PetClinicRuntimeHints,Application,—,12,0,Non,0
+owner-pet-visit,PetTypeFormatter,Utilitaire,—,4,0,Non,0
+
+systeme,CacheConfiguration,Configuration,—,2,0,Non,0
+systeme,WebConfiguration,Configuration,—,3,0,Non,0
+
+veterinaire,VetController,Controleur,vets,15,0,Non,1
+veterinaire,Vet,Entite,vets,7,0,Non,1
