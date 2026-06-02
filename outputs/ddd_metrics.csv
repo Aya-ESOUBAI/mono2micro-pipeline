@@ -1,0 +1,6 @@
+cluster_id,nom_suggere,nb_classes,cohesion,ifn,couplage_sort,couplage_ent,qualite_ddd,classes
+1,VetService,2,0.0,0.0,0,0,⚠️  MOYEN,"VetController, VisitController"
+2,PetService,2,0.0,0.0,0,0,⚠️  MOYEN,"PetController, OwnerController"
+3,PetService,5,0.0,0.0,0,0,⚠️  MOYEN,"PetClinicApplication, PetClinicRuntimeHints, PetTypeFormatter, CacheConfiguration, WebConfiguration"
+4,PetService,4,0.0,0.0,0,0,⚠️  MOYEN,"PetValidator, Vet, Visit, Pet"
+5,OwnerService,1,0.0,0.0,0,0,⚠️  MOYEN,Owner

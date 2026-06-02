@@ -1,194 +1,258 @@
 {
-  "summary": {
-    "totalTables": 7,
-    "totalFKs": 0,
-    "tableNames": [
-      "vets",
-      "specialties",
-      "vet_specialties",
-      "types",
-      "owners",
-      "pets",
-      "visits"
-    ]
-  },
-  "tables": {
-    "vets": [
-      {
-        "name": "id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": true
-      },
-      {
-        "name": "first_name",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "last_name",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      }
-    ],
-    "specialties": [
-      {
-        "name": "id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": true
-      },
-      {
-        "name": "name",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      }
-    ],
-    "vet_specialties": [
-      {
-        "name": "vet_id",
-        "type": "INTEGER",
-        "nullable": false,
-        "primaryKey": false
-      },
-      {
-        "name": "specialty_id",
-        "type": "INTEGER",
-        "nullable": false,
-        "primaryKey": false
-      }
-    ],
-    "types": [
-      {
-        "name": "id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": true
-      },
-      {
-        "name": "name",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      }
-    ],
-    "owners": [
-      {
-        "name": "id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": true
-      },
-      {
-        "name": "first_name",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "last_name",
-        "type": "VARCHAR_IGNORECASE",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "address",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "city",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "telephone",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      }
-    ],
-    "pets": [
-      {
-        "name": "id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": true
-      },
-      {
-        "name": "name",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "birth_date",
-        "type": "DATE",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "type_id",
-        "type": "INTEGER",
-        "nullable": false,
-        "primaryKey": false
-      },
-      {
-        "name": "owner_id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": false
-      }
-    ],
-    "visits": [
-      {
-        "name": "id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": true
-      },
-      {
-        "name": "pet_id",
-        "type": "INTEGER",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "visit_date",
-        "type": "DATE",
-        "nullable": true,
-        "primaryKey": false
-      },
-      {
-        "name": "description",
-        "type": "VARCHAR",
-        "nullable": true,
-        "primaryKey": false
-      }
-    ]
-  },
-  "foreignKeys": [],
-  "tableGraph": {},
+  "classes": [
+    {
+      "fqn": "org.springframework.samples.petclinic.package-info",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.PetClinicApplication",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.PetClinicRuntimeHints",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.BaseEntity",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.NamedEntity",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.package-info",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.Person",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.Owner",
+      "tables": [
+        "owners"
+      ],
+      "tables_count": 1,
+      "fk_refs": [
+        "owners"
+      ],
+      "totalFKs": 1
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.OwnerController",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.OwnerRepository",
+      "tables": [
+        "owners"
+      ],
+      "tables_count": 1,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.package-info",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.Pet",
+      "tables": [
+        "pets"
+      ],
+      "tables_count": 1,
+      "fk_refs": [
+        "pets",
+        "types"
+      ],
+      "totalFKs": 2
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetController",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetType",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetTypeFormatter",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetTypeRepository",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetValidator",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.Visit",
+      "tables": [
+        "visits"
+      ],
+      "tables_count": 1,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.VisitController",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.CacheConfiguration",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.CrashController",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.package-info",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.WebConfiguration",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.WelcomeController",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.package-info",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.Specialty",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.Vet",
+      "tables": [
+        "vets"
+      ],
+      "tables_count": 1,
+      "fk_refs": [
+        "vets"
+      ],
+      "totalFKs": 1
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.VetController",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.VetRepository",
+      "tables": [
+        "vets"
+      ],
+      "tables_count": 1,
+      "fk_refs": [],
+      "totalFKs": 0
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.Vets",
+      "tables": [],
+      "tables_count": 0,
+      "fk_refs": [],
+      "totalFKs": 0
+    }
+  ],
   "domainGroups": {
-    "veterinarian": [
-      "vets",
-      "specialties",
-      "vet_specialties"
-    ],
-    "reference": [
-      "types"
-    ],
     "owner_pet": [
-      "owners",
-      "pets"
+      "org.springframework.samples.petclinic.owner.Owner",
+      "org.springframework.samples.petclinic.owner.OwnerRepository",
+      "org.springframework.samples.petclinic.owner.Pet"
+    ],
+    "veterinarian": [
+      "org.springframework.samples.petclinic.vet.Vet",
+      "org.springframework.samples.petclinic.vet.VetRepository"
     ],
     "appointment": [
-      "visits"
-    ]
-  }
+      "org.springframework.samples.petclinic.owner.Visit"
+    ],
+    "reference": []
+  },
+  "allTables": [
+    "owners",
+    "pets",
+    "visits",
+    "vets",
+    "specialties",
+    "vet_specialties",
+    "types",
+    "pet_types"
+  ]
 }

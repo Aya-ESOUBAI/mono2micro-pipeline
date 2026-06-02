@@ -1,0 +1,6 @@
+ID Microservice,Nom suggere,Contexte DDD,Nb classes,Tables SQL gerees,Controllers (endpoints),Repositories (BD),Entites (donnees),Cohesion,Instabilite IFN,Qualite DDD,Depend de
+MS-1,VetService,VeterinaryContext,2,"vets, visits","VetController, VisitController",—,—,0.0,0.0,⚠️  MOYEN,aucune
+MS-2,PetService,OwnerPetContext,2,"owners, pets","PetController, OwnerController",—,—,0.0,0.0,⚠️  MOYEN,aucune
+MS-3,PetService,OwnerPetContext,5,aucune,—,—,—,0.0,0.0,⚠️  MOYEN,aucune
+MS-4,PetService,OwnerPetContext,4,"pets, vets, visits",—,—,"Vet, Visit, Pet",0.0,0.0,⚠️  MOYEN,aucune
+MS-5,OwnerService,OwnerPetContext,1,owners,—,—,Owner,0.0,0.0,⚠️  MOYEN,aucune

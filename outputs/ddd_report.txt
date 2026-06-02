@@ -1,0 +1,58 @@
+╔══════════════════════════════════════════════════════╗
+║    RAPPORT DDD — Validation des Microservices        ║
+╚══════════════════════════════════════════════════════╝
+
+  Silhouette Score global : 0.5966
+  Nombre de microservices : 5
+
+──────────────────────────────────────────────────────
+  📦 Cluster 1 — VetService
+──────────────────────────────────────────────────────
+  Classes (2) : ['VetController', 'VisitController']
+  Cohésion              : 0.000  (1.0 = parfait)
+  IFN (instabilité)     : 0.000  (0.0 = stable)
+  Dépendances externes  : aucune ✅
+  Qualité DDD           : ⚠️  MOYEN
+
+──────────────────────────────────────────────────────
+  📦 Cluster 2 — PetService
+──────────────────────────────────────────────────────
+  Classes (2) : ['PetController', 'OwnerController']
+  Cohésion              : 0.000  (1.0 = parfait)
+  IFN (instabilité)     : 0.000  (0.0 = stable)
+  Dépendances externes  : aucune ✅
+  Qualité DDD           : ⚠️  MOYEN
+
+──────────────────────────────────────────────────────
+  📦 Cluster 3 — PetService
+──────────────────────────────────────────────────────
+  Classes (5) : ['PetClinicApplication', 'PetClinicRuntimeHints', 'PetTypeFormatter', 'CacheConfiguration', 'WebConfiguration']
+  Cohésion              : 0.000  (1.0 = parfait)
+  IFN (instabilité)     : 0.000  (0.0 = stable)
+  Dépendances externes  : aucune ✅
+  Qualité DDD           : ⚠️  MOYEN
+
+──────────────────────────────────────────────────────
+  📦 Cluster 4 — PetService
+──────────────────────────────────────────────────────
+  Classes (4) : ['PetValidator', 'Vet', 'Visit', 'Pet']
+  Cohésion              : 0.000  (1.0 = parfait)
+  IFN (instabilité)     : 0.000  (0.0 = stable)
+  Dépendances externes  : aucune ✅
+  Qualité DDD           : ⚠️  MOYEN
+
+──────────────────────────────────────────────────────
+  📦 Cluster 5 — OwnerService
+──────────────────────────────────────────────────────
+  Classes (1) : ['Owner']
+  Cohésion              : 0.000  (1.0 = parfait)
+  IFN (instabilité)     : 0.000  (0.0 = stable)
+  Dépendances externes  : aucune ✅
+  Qualité DDD           : ⚠️  MOYEN
+
+======================================================
+  RECOMMANDATIONS
+======================================================
+
+  ⚠️  Cohésion faible (<0.5) → à revoir : clusters [1, 2, 3, 4, 5]
+      Ces clusters mélangent des classes de domaines différents.

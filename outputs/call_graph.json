@@ -1,1515 +1,641 @@
 {
-  "summary": {
-    "totalFiles": 30,
-    "parsedFiles": 30,
-    "errorFiles": 0,
-    "totalClasses": 14,
-    "totalCalls": 172,
-    "classes": [
-      "Owner",
-      "PetController",
-      "PetValidator",
-      "Vet",
-      "Visit",
-      "PetClinicApplication",
-      "PetClinicRuntimeHints",
-      "VetController",
-      "VisitController",
-      "OwnerController",
-      "Pet",
-      "PetTypeFormatter",
-      "CacheConfiguration",
-      "WebConfiguration"
-    ]
-  },
-  "calls": [
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "isNew",
-      "type": "method_call",
-      "lineNumber": 98
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "getPets()",
-      "methodName": "add",
-      "type": "method_call",
-      "lineNumber": 99
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "isNew",
-      "type": "method_call",
-      "lineNumber": 119
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getId",
-      "type": "method_call",
-      "lineNumber": 120
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Objects",
-      "methodName": "equals",
-      "type": "method_call",
-      "lineNumber": 121
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 137
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "compName",
-      "methodName": "equalsIgnoreCase",
-      "type": "method_call",
-      "lineNumber": 138
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "isNew",
-      "type": "method_call",
-      "lineNumber": 139
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName()).append(\"address\", this.address).append(\"city\", this.city).append(\"telephone\", this.telephone)",
-      "methodName": "toString",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName()).append(\"address\", this.address).append(\"city\", this.city)",
-      "methodName": "append",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName()).append(\"address\", this.address)",
-      "methodName": "append",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName())",
-      "methodName": "append",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName())",
-      "methodName": "append",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew())",
-      "methodName": "append",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this).append(\"id\", this.getId())",
-      "methodName": "append",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "new ToStringCreator(this)",
-      "methodName": "append",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Assert",
-      "methodName": "notNull",
-      "type": "method_call",
-      "lineNumber": 166
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Assert",
-      "methodName": "notNull",
-      "type": "method_call",
-      "lineNumber": 167
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Assert",
-      "methodName": "notNull",
-      "type": "method_call",
-      "lineNumber": 171
-    },
-    {
-      "fromClass": "Owner",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "addVisit",
-      "type": "method_call",
-      "lineNumber": 173
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "dataBinder",
-      "methodName": "setDisallowedFields",
-      "type": "method_call",
-      "lineNumber": 61
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners.findById(ownerId)",
-      "methodName": "orElseThrow",
-      "type": "method_call",
-      "lineNumber": 67
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "findById",
-      "type": "method_call",
-      "lineNumber": 67
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "hasErrors",
-      "type": "method_call",
-      "lineNumber": 79
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 80
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "save",
-      "type": "method_call",
-      "lineNumber": 84
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 85
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getId",
-      "type": "method_call",
-      "lineNumber": 86
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getLastName",
-      "type": "method_call",
-      "lineNumber": 98
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "ownersResults",
-      "methodName": "isEmpty",
-      "type": "method_call",
-      "lineNumber": 105
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 107
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "ownersResults",
-      "methodName": "getTotalElements",
-      "type": "method_call",
-      "lineNumber": 111
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "ownersResults.iterator()",
-      "methodName": "next",
-      "type": "method_call",
-      "lineNumber": 113
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "ownersResults",
-      "methodName": "iterator",
-      "type": "method_call",
-      "lineNumber": 113
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getId",
-      "type": "method_call",
-      "lineNumber": 114
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "paginated",
-      "methodName": "getContent",
-      "type": "method_call",
-      "lineNumber": 122
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 123
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 124
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "paginated",
-      "methodName": "getTotalPages",
-      "type": "method_call",
-      "lineNumber": 124
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 125
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "paginated",
-      "methodName": "getTotalElements",
-      "type": "method_call",
-      "lineNumber": 125
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 126
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "PageRequest",
-      "methodName": "of",
-      "type": "method_call",
-      "lineNumber": 132
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owners",
-      "methodName": "findByLastNameStartingWith",
-      "type": "method_call",
-      "lineNumber": 133
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "hasErrors",
-      "type": "method_call",
-      "lineNumber": 144
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 145
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Objects",
-      "methodName": "equals",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getId",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 150
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 151
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "setId",
-      "type": "method_call",
-      "lineNumber": 155
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "save",
-      "type": "method_call",
-      "lineNumber": 156
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 157
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "findById",
-      "type": "method_call",
-      "lineNumber": 169
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "optionalOwner",
-      "methodName": "orElseThrow",
-      "type": "method_call",
-      "lineNumber": 170
-    },
-    {
-      "fromClass": "OwnerController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "mav",
-      "methodName": "addObject",
-      "type": "method_call",
-      "lineNumber": 172
-    },
-    {
-      "fromClass": "Pet",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "getVisits()",
-      "methodName": "add",
-      "type": "method_call",
-      "lineNumber": 82
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.types",
-      "methodName": "findPetTypes",
-      "type": "method_call",
-      "lineNumber": 63
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "findById",
-      "type": "method_call",
-      "lineNumber": 68
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "optionalOwner",
-      "methodName": "orElseThrow",
-      "type": "method_call",
-      "lineNumber": 69
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "findById",
-      "type": "method_call",
-      "lineNumber": 82
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "optionalOwner",
-      "methodName": "orElseThrow",
-      "type": "method_call",
-      "lineNumber": 83
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getPet",
-      "type": "method_call",
-      "lineNumber": 85
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "dataBinder",
-      "methodName": "setDisallowedFields",
-      "type": "method_call",
-      "lineNumber": 90
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "dataBinder",
-      "methodName": "setValidator",
-      "type": "method_call",
-      "lineNumber": 95
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "dataBinder",
-      "methodName": "setDisallowedFields",
-      "type": "method_call",
-      "lineNumber": 96
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "addPet",
-      "type": "method_call",
-      "lineNumber": 102
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "StringUtils",
-      "methodName": "hasText",
-      "type": "method_call",
-      "lineNumber": 110
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 110
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "isNew",
-      "type": "method_call",
-      "lineNumber": 110
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getPet",
-      "type": "method_call",
-      "lineNumber": 110
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 110
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 111
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "LocalDate",
-      "methodName": "now",
-      "type": "method_call",
-      "lineNumber": 114
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getBirthDate",
-      "type": "method_call",
-      "lineNumber": 115
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet.getBirthDate()",
-      "methodName": "isAfter",
-      "type": "method_call",
-      "lineNumber": 115
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getBirthDate",
-      "type": "method_call",
-      "lineNumber": 115
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 116
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "hasErrors",
-      "type": "method_call",
-      "lineNumber": 119
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "addPet",
-      "type": "method_call",
-      "lineNumber": 123
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "save",
-      "type": "method_call",
-      "lineNumber": 124
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 125
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 138
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "StringUtils",
-      "methodName": "hasText",
-      "type": "method_call",
-      "lineNumber": 141
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getPet",
-      "type": "method_call",
-      "lineNumber": 142
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Objects",
-      "methodName": "equals",
-      "type": "method_call",
-      "lineNumber": 143
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "existingPet",
-      "methodName": "getId",
-      "type": "method_call",
-      "lineNumber": 143
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getId",
-      "type": "method_call",
-      "lineNumber": 143
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 144
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "LocalDate",
-      "methodName": "now",
-      "type": "method_call",
-      "lineNumber": 148
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getBirthDate",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet.getBirthDate()",
-      "methodName": "isAfter",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getBirthDate",
-      "type": "method_call",
-      "lineNumber": 149
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 150
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "hasErrors",
-      "type": "method_call",
-      "lineNumber": 153
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 158
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getId",
-      "type": "method_call",
-      "lineNumber": 168
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Assert",
-      "methodName": "state",
-      "type": "method_call",
-      "lineNumber": 169
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getPet",
-      "type": "method_call",
-      "lineNumber": 170
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "addPet",
-      "type": "method_call",
-      "lineNumber": 178
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "existingPet",
-      "methodName": "setName",
-      "type": "method_call",
-      "lineNumber": 173
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 173
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "existingPet",
-      "methodName": "setBirthDate",
-      "type": "method_call",
-      "lineNumber": 174
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getBirthDate",
-      "type": "method_call",
-      "lineNumber": 174
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "existingPet",
-      "methodName": "setType",
-      "type": "method_call",
-      "lineNumber": 175
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getType",
-      "type": "method_call",
-      "lineNumber": 175
-    },
-    {
-      "fromClass": "PetController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "save",
-      "type": "method_call",
-      "lineNumber": 180
-    },
-    {
-      "fromClass": "PetTypeFormatter",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "petType",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 47
-    },
-    {
-      "fromClass": "PetTypeFormatter",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.types",
-      "methodName": "findPetTypes",
-      "type": "method_call",
-      "lineNumber": 53
-    },
-    {
-      "fromClass": "PetTypeFormatter",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Objects",
-      "methodName": "equals",
-      "type": "method_call",
-      "lineNumber": 55
-    },
-    {
-      "fromClass": "PetTypeFormatter",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "type",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 55
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getName",
-      "type": "method_call",
-      "lineNumber": 39
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "StringUtils",
-      "methodName": "hasText",
-      "type": "method_call",
-      "lineNumber": 41
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "errors",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 42
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "isNew",
-      "type": "method_call",
-      "lineNumber": 46
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getType",
-      "type": "method_call",
-      "lineNumber": 46
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "errors",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 47
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "getBirthDate",
-      "type": "method_call",
-      "lineNumber": 51
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "errors",
-      "methodName": "rejectValue",
-      "type": "method_call",
-      "lineNumber": 52
-    },
-    {
-      "fromClass": "PetValidator",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "Pet.class",
-      "methodName": "isAssignableFrom",
-      "type": "method_call",
-      "lineNumber": 61
-    },
-    {
-      "fromClass": "Visit",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "LocalDate",
-      "methodName": "now",
-      "type": "method_call",
-      "lineNumber": 49
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "dataBinder",
-      "methodName": "setDisallowedFields",
-      "type": "method_call",
-      "lineNumber": 52
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owners",
-      "methodName": "findById",
-      "type": "method_call",
-      "lineNumber": 65
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "optionalOwner",
-      "methodName": "orElseThrow",
-      "type": "method_call",
-      "lineNumber": 66
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "getPet",
-      "type": "method_call",
-      "lineNumber": 69
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "model",
-      "methodName": "put",
-      "type": "method_call",
-      "lineNumber": 74
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "model",
-      "methodName": "put",
-      "type": "method_call",
-      "lineNumber": 75
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "pet",
-      "methodName": "addVisit",
-      "type": "method_call",
-      "lineNumber": 78
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "result",
-      "methodName": "hasErrors",
-      "type": "method_call",
-      "lineNumber": 94
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "owner",
-      "methodName": "addVisit",
-      "type": "method_call",
-      "lineNumber": 98
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "this.owners",
-      "methodName": "save",
-      "type": "method_call",
-      "lineNumber": 99
-    },
-    {
-      "fromClass": "VisitController",
-      "fromPackage": "org.springframework.samples.petclinic.owner",
-      "toClass": "redirectAttributes",
-      "methodName": "addFlashAttribute",
-      "type": "method_call",
-      "lineNumber": 100
-    },
-    {
-      "fromClass": "PetClinicApplication",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "SpringApplication",
-      "methodName": "run",
-      "type": "method_call",
-      "lineNumber": 33
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints.resources()",
-      "methodName": "registerPattern",
-      "type": "method_call",
-      "lineNumber": 29
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints",
-      "methodName": "resources",
-      "type": "method_call",
-      "lineNumber": 29
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints.resources()",
-      "methodName": "registerPattern",
-      "type": "method_call",
-      "lineNumber": 30
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints",
-      "methodName": "resources",
-      "type": "method_call",
-      "lineNumber": 30
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints.resources()",
-      "methodName": "registerPattern",
-      "type": "method_call",
-      "lineNumber": 31
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints",
-      "methodName": "resources",
-      "type": "method_call",
-      "lineNumber": 31
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints.serialization()",
-      "methodName": "registerType",
-      "type": "method_call",
-      "lineNumber": 32
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints",
-      "methodName": "serialization",
-      "type": "method_call",
-      "lineNumber": 32
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints.serialization()",
-      "methodName": "registerType",
-      "type": "method_call",
-      "lineNumber": 33
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints",
-      "methodName": "serialization",
-      "type": "method_call",
-      "lineNumber": 33
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints.serialization()",
-      "methodName": "registerType",
-      "type": "method_call",
-      "lineNumber": 34
-    },
-    {
-      "fromClass": "PetClinicRuntimeHints",
-      "fromPackage": "org.springframework.samples.petclinic",
-      "toClass": "hints",
-      "methodName": "serialization",
-      "type": "method_call",
-      "lineNumber": 34
-    },
-    {
-      "fromClass": "CacheConfiguration",
-      "fromPackage": "org.springframework.samples.petclinic.system",
-      "toClass": "cm",
-      "methodName": "createCache",
-      "type": "method_call",
-      "lineNumber": 37
-    },
-    {
-      "fromClass": "CacheConfiguration",
-      "fromPackage": "org.springframework.samples.petclinic.system",
-      "toClass": "new MutableConfiguration\u003c\u003e()",
-      "methodName": "setStatisticsEnabled",
-      "type": "method_call",
-      "lineNumber": 50
-    },
-    {
-      "fromClass": "WebConfiguration",
-      "fromPackage": "org.springframework.samples.petclinic.system",
-      "toClass": "resolver",
-      "methodName": "setDefaultLocale",
-      "type": "method_call",
-      "lineNumber": 35
-    },
-    {
-      "fromClass": "WebConfiguration",
-      "fromPackage": "org.springframework.samples.petclinic.system",
-      "toClass": "interceptor",
-      "methodName": "setParamName",
-      "type": "method_call",
-      "lineNumber": 47
-    },
-    {
-      "fromClass": "WebConfiguration",
-      "fromPackage": "org.springframework.samples.petclinic.system",
-      "toClass": "registry",
-      "methodName": "addInterceptor",
-      "type": "method_call",
-      "lineNumber": 57
-    },
-    {
-      "fromClass": "Vet",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "getSpecialtiesInternal().stream().sorted(Comparator.comparing(NamedEntity::getName))",
-      "methodName": "collect",
-      "type": "method_call",
-      "lineNumber": 61
-    },
-    {
-      "fromClass": "Vet",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "Collectors",
-      "methodName": "toList",
-      "type": "method_call",
-      "lineNumber": 63
-    },
-    {
-      "fromClass": "Vet",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "getSpecialtiesInternal().stream()",
-      "methodName": "sorted",
-      "type": "method_call",
-      "lineNumber": 61
-    },
-    {
-      "fromClass": "Vet",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "Comparator",
-      "methodName": "comparing",
-      "type": "method_call",
-      "lineNumber": 62
-    },
-    {
-      "fromClass": "Vet",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "getSpecialtiesInternal()",
-      "methodName": "stream",
-      "type": "method_call",
-      "lineNumber": 61
-    },
-    {
-      "fromClass": "Vet",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "getSpecialtiesInternal()",
-      "methodName": "size",
-      "type": "method_call",
-      "lineNumber": 67
-    },
-    {
-      "fromClass": "Vet",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "getSpecialtiesInternal()",
-      "methodName": "add",
-      "type": "method_call",
-      "lineNumber": 71
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "vets.getVetList()",
-      "methodName": "addAll",
-      "type": "method_call",
-      "lineNumber": 50
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "paginated",
-      "methodName": "toList",
-      "type": "method_call",
-      "lineNumber": 50
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "vets",
-      "methodName": "getVetList",
-      "type": "method_call",
-      "lineNumber": 50
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "paginated",
-      "methodName": "getContent",
-      "type": "method_call",
-      "lineNumber": 55
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 56
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 57
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "paginated",
-      "methodName": "getTotalPages",
-      "type": "method_call",
-      "lineNumber": 57
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 58
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "paginated",
-      "methodName": "getTotalElements",
-      "type": "method_call",
-      "lineNumber": 58
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "model",
-      "methodName": "addAttribute",
-      "type": "method_call",
-      "lineNumber": 59
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "PageRequest",
-      "methodName": "of",
-      "type": "method_call",
-      "lineNumber": 65
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "vetRepository",
-      "methodName": "findAll",
-      "type": "method_call",
-      "lineNumber": 66
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "vets.getVetList()",
-      "methodName": "addAll",
-      "type": "method_call",
-      "lineNumber": 74
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "this.vetRepository",
-      "methodName": "findAll",
-      "type": "method_call",
-      "lineNumber": 74
-    },
-    {
-      "fromClass": "VetController",
-      "fromPackage": "org.springframework.samples.petclinic.vet",
-      "toClass": "vets",
-      "methodName": "getVetList",
-      "type": "method_call",
-      "lineNumber": 74
+  "nodes": [
+    {
+      "fqn": "org.springframework.samples.petclinic.package-info",
+      "simpleName": "package-info",
+      "package": "org.springframework.samples.petclinic",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.PetClinicApplication",
+      "simpleName": "PetClinicApplication",
+      "package": "org.springframework.samples.petclinic",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "PetClinic Spring Boot Application.  @author Dave Syer",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.PetClinicRuntimeHints",
+      "simpleName": "PetClinicRuntimeHints",
+      "package": "org.springframework.samples.petclinic",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "registerHints"
+      ],
+      "fields": [],
+      "javadoc": "",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "db/*",
+        "messages/*",
+        "mysql-default-conf"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.BaseEntity",
+      "simpleName": "BaseEntity",
+      "package": "org.springframework.samples.petclinic.model",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "getId",
+        "setId",
+        "isNew"
+      ],
+      "fields": [
+        "id"
+      ],
+      "javadoc": "Simple JavaBean domain object with an id property. Used as a base class for objects needing this property.  @author Ken Krebs @author Juergen Hoeller",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.NamedEntity",
+      "simpleName": "NamedEntity",
+      "package": "org.springframework.samples.petclinic.model",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "getName",
+        "setName",
+        "toString"
+      ],
+      "fields": [
+        "name"
+      ],
+      "javadoc": "Simple JavaBean domain object adds a name property to <code>BaseEntity</code>. Used as a base class for objects needing these properties.  @author Ken Krebs @author Juergen Hoeller @author Wick Dynex",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "<null>"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.package-info",
+      "simpleName": "package-info",
+      "package": "org.springframework.samples.petclinic.model",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "The classes in this package represent utilities used by the domain.",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.model.Person",
+      "simpleName": "Person",
+      "package": "org.springframework.samples.petclinic.model",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "getFirstName",
+        "setFirstName",
+        "getLastName",
+        "setLastName"
+      ],
+      "fields": [
+        "firstName",
+        "lastName"
+      ],
+      "javadoc": "Simple JavaBean domain object representing an person.  @author Ken Krebs",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.Owner",
+      "simpleName": "Owner",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 1,
+      "methods": [
+        "getAddress",
+        "setAddress",
+        "getCity",
+        "setCity",
+        "getTelephone",
+        "setTelephone",
+        "getPets",
+        "addPet",
+        "getPet",
+        "getPet",
+        "getPet",
+        "toString",
+        "addVisit"
+      ],
+      "fields": [
+        "address",
+        "city",
+        "telephone"
+      ],
+      "javadoc": "Simple JavaBean domain object representing an owner.  @author Ken Krebs @author Juergen Hoeller @author Sam Brannen @author Michael Isvy @author Oliver Drotbohm @author Wick Dynex Return the Pet with the given name, or null if none found for this Owner. @param name to test @return the Pet with the given name, or null if no such Pet exists for this Owner Return the Pet with the given id, or null if none found for this Owner. @param id to test @return the Pet with the given id, or null if no such Pet exists for this Owner Return the Pet with the given name, or null if none found for this Owner. @param name to test @param ignoreNew whether to ignore new pets (pets that are not saved yet) @return the Pet with the given name, or null if no such Pet exists for this Owner Adds the given {@link Visit} to the {@link Pet} with the given identifier. @param petId the identifier of the {@link Pet}, must not be {@literal null}. @param visit the visit to add, must not be {@literal null}.",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "owners",
+        "\\\\d{10}",
+        "{telephone.invalid}",
+        "owner_id",
+        "name",
+        ", this.getId())\n\t\t\t.append(",
+        ", this.isNew())\n\t\t\t.append(",
+        ", this.getLastName())\n\t\t\t.append("
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.OwnerController",
+      "simpleName": "OwnerController",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 1,
+      "fan_in": 0,
+      "methods": [
+        "setAllowedFields",
+        "findOwner",
+        "initCreationForm",
+        "processCreationForm",
+        "initFindForm",
+        "processFindForm",
+        "addPaginationModel",
+        "findPaginatedForOwnersLastName",
+        "initUpdateOwnerForm",
+        "processUpdateOwnerForm",
+        "showOwner"
+      ],
+      "fields": [],
+      "javadoc": "@author Juergen Hoeller @author Ken Krebs @author Arjen Poutsma @author Michael Isvy @author Wick Dynex Custom handler for displaying an owner. @param ownerId the ID of the owner to display @return a ModelMap with the model attributes for the view",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "owners/createOrUpdateOwnerForm",
+        "*.id",
+        "owner",
+        "ownerId",
+        "Owner not found with id: ",
+        ". Please ensure the ID is correct ",
+        "and the owner exists in the database.",
+        "/owners/new"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.OwnerRepository",
+      "simpleName": "OwnerRepository",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "Repository class for <code>Owner</code> domain objects. All method names are compliant with Spring Data naming conventions so this interface can easily be extended for Spring Data. See: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation  @author Ken Krebs @author Juergen Hoeller @author Sam Brannen @author Michael Isvy @author Wick Dynex Retrieve {@link Owner}s from the data store by last name, returning all owners whose last name <i>starts</i> with the given name. @param lastName Value to search for @return a Collection of matching {@link Owner}s (or an empty Collection if none found) Retrieve an {@link Owner} from the data store by id. <p> This method returns an {@link Optional} containing the {@link Owner} if found. If no {@link Owner} is found with the provided id, it will return an empty {@link Optional}. </p> @param id the id to search for @return an {@link Optional} containing the {@link Owner} if found, or an empty {@link Optional} if not found. @throws IllegalArgumentException if the id is null (assuming null is not a valid input for id)",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.package-info",
+      "simpleName": "package-info",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.Pet",
+      "simpleName": "Pet",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 1,
+      "methods": [
+        "setBirthDate",
+        "getBirthDate",
+        "getType",
+        "setType",
+        "getVisits",
+        "addVisit"
+      ],
+      "fields": [
+        "birthDate",
+        "type"
+      ],
+      "javadoc": "Simple business object representing a pet.  @author Ken Krebs @author Juergen Hoeller @author Sam Brannen @author Wick Dynex",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "pets",
+        "yyyy-MM-dd",
+        "type_id",
+        "pet_id",
+        "date ASC"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetController",
+      "simpleName": "PetController",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 2,
+      "fan_in": 0,
+      "methods": [
+        "populatePetTypes",
+        "findOwner",
+        "findPet",
+        "initOwnerBinder",
+        "initPetBinder",
+        "initCreationForm",
+        "processCreationForm",
+        "initUpdateForm",
+        "processUpdateForm",
+        "updatePetDetails"
+      ],
+      "fields": [],
+      "javadoc": "@author Juergen Hoeller @author Ken Krebs @author Arjen Poutsma @author Wick Dynex Updates the pet details if it exists or adds a new pet to the owner. @param owner The owner of the pet @param pet The pet with updated details",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "/owners/{ownerId}",
+        "pets/createOrUpdatePetForm",
+        "types",
+        "owner",
+        "ownerId",
+        "Owner not found with id: ",
+        ". Please ensure the ID is correct ",
+        ")\n\tpublic Pet findPet(@PathVariable("
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetType",
+      "simpleName": "PetType",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "@author Juergen Hoeller Can be Cat, Dog, Hamster...",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "types"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetTypeFormatter",
+      "simpleName": "PetTypeFormatter",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "print",
+        "parse"
+      ],
+      "fields": [],
+      "javadoc": "Instructs Spring MVC on how to parse and print elements of type 'PetType'. Starting from Spring 3.0, Formatters have come as an improvement in comparison to legacy PropertyEditors. See the following links for more details: - The Spring ref doc: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#format  @author Mark Fisher @author Juergen Hoeller @author Michael Isvy",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "<null>",
+        "type not found: "
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetTypeRepository",
+      "simpleName": "PetTypeRepository",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "Repository class for <code>PetType</code> domain objects.  @author Patrick Baumgartner Retrieve all {@link PetType}s from the data store. @return a Collection of {@link PetType}s.",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "SELECT ptype FROM PetType ptype ORDER BY ptype.name"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.PetValidator",
+      "simpleName": "PetValidator",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 1,
+      "methods": [
+        "validate",
+        "supports"
+      ],
+      "fields": [],
+      "javadoc": "<code>Validator</code> for <code>Pet</code> forms. <p> We're not using Bean Validation annotations here because it is easier to define such validation rule in Java. </p>  @author Ken Krebs @author Juergen Hoeller This Validator validates just Pet instances",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "required",
+        "name",
+        "type",
+        "birthDate"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.Visit",
+      "simpleName": "Visit",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 0,
+      "fan_in": 1,
+      "methods": [
+        "getDate",
+        "setDate",
+        "getDescription",
+        "setDescription"
+      ],
+      "fields": [
+        "date",
+        "description"
+      ],
+      "javadoc": "Simple JavaBean domain object representing a visit.  @author Ken Krebs @author Dave Syer Creates a new instance of Visit for the current date",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "visits",
+        "visit_date",
+        "yyyy-MM-dd"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.owner.VisitController",
+      "simpleName": "VisitController",
+      "package": "org.springframework.samples.petclinic.owner",
+      "fan_out": 1,
+      "fan_in": 0,
+      "methods": [
+        "setAllowedFields",
+        "loadPetWithVisit",
+        "initNewVisitForm",
+        "processNewVisitForm"
+      ],
+      "fields": [],
+      "javadoc": "@author Juergen Hoeller @author Ken Krebs @author Arjen Poutsma @author Michael Isvy @author Dave Syer @author Wick Dynex Called before each and every @RequestMapping annotated method. 2 goals: - Make sure we always have fresh data - Since we do not use the session scope, make sure that Pet object always has an id (Even though id is not part of the form fields) @param petId @return Pet",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "*.id",
+        "visit",
+        "ownerId",
+        "petId",
+        "Owner not found with id: ",
+        ". Please ensure the ID is correct ",
+        "Pet with id ",
+        " not found for owner with id "
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.CacheConfiguration",
+      "simpleName": "CacheConfiguration",
+      "package": "org.springframework.samples.petclinic.system",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "petclinicCacheConfigurationCustomizer"
+      ],
+      "fields": [],
+      "javadoc": "Cache configuration intended for caches providing the JCache API. This configuration creates the used cache for the application and enables statistics that become accessible via JMX. Create a simple configuration that enable statistics via the JCache programmatic configuration API. <p> Within the configuration object that is provided by the JCache API standard, there is only a very limited set of configuration options. The really relevant configuration options (like the size limit) must be set via a configuration mechanism that is provided by the selected JCache implementation.",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "vets"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.CrashController",
+      "simpleName": "CrashController",
+      "package": "org.springframework.samples.petclinic.system",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "triggerException"
+      ],
+      "fields": [],
+      "javadoc": "Controller used to showcase what happens when an exception is thrown  @author Michael Isvy <p/> Also see how a view that resolves to \"error\" has been added (\"error.html\").",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "error",
+        "error.html",
+        "/oups",
+        "Expected: controller used to showcase what ",
+        "happens when an exception is thrown"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.package-info",
+      "simpleName": "package-info",
+      "package": "org.springframework.samples.petclinic.system",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.WebConfiguration",
+      "simpleName": "WebConfiguration",
+      "package": "org.springframework.samples.petclinic.system",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "localeResolver",
+        "localeChangeInterceptor",
+        "addInterceptors"
+      ],
+      "fields": [],
+      "javadoc": "Configures internationalization (i18n) support for the application.  <p> Handles loading language-specific messages, tracking the user's language, and allowing language changes via the URL parameter (e.g., <code>?lang=de</code>). </p>  @author Anuj Ashok Potdar Uses session storage to remember the user\u2019s language setting across requests. Defaults to English if nothing is specified. @return session-based {@link LocaleResolver} Allows the app to switch languages using a URL parameter like <code>?lang=es</code>. @return a {@link LocaleChangeInterceptor} that handles the change Registers the locale change interceptor so it can run on each request. @param registry where interceptors are added",
+      "string_literals": [
+        "unused",
+        "lang"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.system.WelcomeController",
+      "simpleName": "WelcomeController",
+      "package": "org.springframework.samples.petclinic.system",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "welcome"
+      ],
+      "fields": [],
+      "javadoc": "",
+      "string_literals": [
+        "License",
+        "AS IS",
+        ")\n\tpublic String welcome() {\n\t\treturn "
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.package-info",
+      "simpleName": "package-info",
+      "package": "org.springframework.samples.petclinic.vet",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.Specialty",
+      "simpleName": "Specialty",
+      "package": "org.springframework.samples.petclinic.vet",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "Models a {@link Vet Vet's} specialty (for example, dentistry).  @author Juergen Hoeller",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "specialties"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.Vet",
+      "simpleName": "Vet",
+      "package": "org.springframework.samples.petclinic.vet",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [
+        "getSpecialtiesInternal",
+        "getSpecialties",
+        "getNrOfSpecialties",
+        "addSpecialty"
+      ],
+      "fields": [
+        "specialties"
+      ],
+      "javadoc": "Simple JavaBean domain object representing a veterinarian.  @author Ken Krebs @author Juergen Hoeller @author Sam Brannen @author Arjen Poutsma",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "vets",
+        "vet_specialties",
+        "vet_id",
+        "specialty_id"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.VetController",
+      "simpleName": "VetController",
+      "package": "org.springframework.samples.petclinic.vet",
+      "fan_out": 1,
+      "fan_in": 0,
+      "methods": [
+        "showVetList",
+        "addPaginationModel",
+        "findPaginated"
+      ],
+      "fields": [],
+      "javadoc": "@author Juergen Hoeller @author Mark Fisher @author Ken Krebs @author Arjen Poutsma",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "/vets.html",
+        "currentPage",
+        "totalPages",
+        "totalItems",
+        "listVets",
+        "vets/vetList",
+        "/vets"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.VetRepository",
+      "simpleName": "VetRepository",
+      "package": "org.springframework.samples.petclinic.vet",
+      "fan_out": 0,
+      "fan_in": 0,
+      "methods": [],
+      "fields": [],
+      "javadoc": "Repository class for <code>Vet</code> domain objects All method names are compliant with Spring Data naming conventions so this interface can easily be extended for Spring Data. See: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation  @author Ken Krebs @author Juergen Hoeller @author Sam Brannen @author Michael Isvy Retrieve all <code>Vet</code>s from the data store. @return a <code>Collection</code> of <code>Vet</code>s Retrieve all <code>Vet</code>s from data store in Pages @param pageable @return @throws DataAccessException",
+      "string_literals": [
+        "License",
+        "AS IS",
+        "vets",
+        "vets"
+      ]
+    },
+    {
+      "fqn": "org.springframework.samples.petclinic.vet.Vets",
+      "simpleName": "Vets",
+      "package": "org.springframework.samples.petclinic.vet",
+      "fan_out": 0,
+      "fan_in": 1,
+      "methods": [
+        "getVetList"
+      ],
+      "fields": [
+        "vets"
+      ],
+      "javadoc": "Simple domain object representing a list of veterinarians. Mostly here to be used for the 'vets' {@link org.springframework.web.servlet.view.xml.MarshallingView}.  @author Arjen Poutsma",
+      "string_literals": [
+        "License",
+        "AS IS"
+      ]
     }
   ],
-  "adjacencyMatrix": {
-    "Owner": [
-      "pet",
-      "getPets()",
-      "Objects",
-      "compName",
-      "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName()).append(\"address\", this.address).append(\"city\", this.city).append(\"telephone\", this.telephone)",
-      "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName()).append(\"address\", this.address).append(\"city\", this.city)",
-      "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName()).append(\"address\", this.address)",
-      "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName()).append(\"firstName\", this.getFirstName())",
-      "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew()).append(\"lastName\", this.getLastName())",
-      "new ToStringCreator(this).append(\"id\", this.getId()).append(\"new\", this.isNew())",
-      "new ToStringCreator(this).append(\"id\", this.getId())",
-      "new ToStringCreator(this)",
-      "Assert"
-    ],
-    "OwnerController": [
-      "dataBinder",
-      "this.owners.findById(ownerId)",
-      "this.owners",
-      "result",
-      "redirectAttributes",
-      "owner",
-      "ownersResults",
-      "ownersResults.iterator()",
-      "paginated",
-      "model",
-      "PageRequest",
-      "owners",
-      "Objects",
-      "optionalOwner",
-      "mav"
-    ],
-    "Pet": [
-      "getVisits()"
-    ],
-    "PetController": [
-      "this.types",
-      "this.owners",
-      "optionalOwner",
-      "owner",
-      "dataBinder",
-      "StringUtils",
-      "pet",
-      "result",
-      "LocalDate",
-      "pet.getBirthDate()",
-      "redirectAttributes",
-      "Objects",
-      "existingPet",
-      "Assert"
-    ],
-    "PetTypeFormatter": [
-      "petType",
-      "this.types",
-      "Objects",
-      "type"
-    ],
-    "PetValidator": [
-      "pet",
-      "StringUtils",
-      "errors",
-      "Pet.class"
-    ],
-    "Visit": [
-      "LocalDate"
-    ],
-    "VisitController": [
-      "dataBinder",
-      "owners",
-      "optionalOwner",
-      "owner",
-      "model",
-      "pet",
-      "result",
-      "this.owners",
-      "redirectAttributes"
-    ],
-    "PetClinicApplication": [
-      "SpringApplication"
-    ],
-    "PetClinicRuntimeHints": [
-      "hints.resources()",
-      "hints",
-      "hints.serialization()"
-    ],
-    "CacheConfiguration": [
-      "cm",
-      "new MutableConfiguration\u003c\u003e()"
-    ],
-    "WebConfiguration": [
-      "resolver",
-      "interceptor",
-      "registry"
-    ],
-    "Vet": [
-      "getSpecialtiesInternal().stream().sorted(Comparator.comparing(NamedEntity::getName))",
-      "Collectors",
-      "getSpecialtiesInternal().stream()",
-      "Comparator",
-      "getSpecialtiesInternal()"
-    ],
-    "VetController": [
-      "vets.getVetList()",
-      "paginated",
-      "vets",
-      "model",
-      "PageRequest",
-      "vetRepository",
-      "this.vetRepository"
-    ]
-  }
+  "edges": [
+    {
+      "fromClass": "org.springframework.samples.petclinic.owner.OwnerController",
+      "toClass": "org.springframework.samples.petclinic.owner.Owner",
+      "weight": 1
+    },
+    {
+      "fromClass": "org.springframework.samples.petclinic.owner.PetController",
+      "toClass": "org.springframework.samples.petclinic.owner.Pet",
+      "weight": 2
+    },
+    {
+      "fromClass": "org.springframework.samples.petclinic.owner.PetController",
+      "toClass": "org.springframework.samples.petclinic.owner.PetValidator",
+      "weight": 1
+    },
+    {
+      "fromClass": "org.springframework.samples.petclinic.owner.VisitController",
+      "toClass": "org.springframework.samples.petclinic.owner.Visit",
+      "weight": 1
+    },
+    {
+      "fromClass": "org.springframework.samples.petclinic.vet.VetController",
+      "toClass": "org.springframework.samples.petclinic.vet.Vets",
+      "weight": 2
+    }
+  ]
 }

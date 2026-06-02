@@ -1,0 +1,15 @@
+class_name,related_table,cluster_id
+Owner,owners,5
+PetController,pets,2
+PetValidator,pets,4
+Vet,vets,4
+Visit,visits,4
+PetClinicApplication,none,3
+PetClinicRuntimeHints,none,3
+VetController,vets,1
+VisitController,visits,1
+OwnerController,owners,2
+Pet,pets,4
+PetTypeFormatter,none,3
+CacheConfiguration,none,3
+WebConfiguration,none,3

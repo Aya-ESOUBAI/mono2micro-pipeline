@@ -1,0 +1,242 @@
+{
+  "org.springframework.samples.petclinic.package-info": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.PetClinicApplication": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": true
+  },
+  "org.springframework.samples.petclinic.PetClinicRuntimeHints": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.model.BaseEntity": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.model.NamedEntity": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.model.package-info": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.model.Person": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.Owner": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": true,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.OwnerController": {
+    "is_controller": true,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.OwnerRepository": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": true,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.package-info": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.Pet": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": true,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.PetController": {
+    "is_controller": true,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.PetType": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": true,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.PetTypeFormatter": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": true,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.PetTypeRepository": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": true,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.PetValidator": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.Visit": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": true,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.owner.VisitController": {
+    "is_controller": true,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.system.CacheConfiguration": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": true
+  },
+  "org.springframework.samples.petclinic.system.CrashController": {
+    "is_controller": true,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.system.package-info": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.system.WebConfiguration": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": true
+  },
+  "org.springframework.samples.petclinic.system.WelcomeController": {
+    "is_controller": true,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.vet.package-info": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.vet.Specialty": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": true,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.vet.Vet": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": true,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.vet.VetController": {
+    "is_controller": true,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.vet.VetRepository": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  },
+  "org.springframework.samples.petclinic.vet.Vets": {
+    "is_controller": false,
+    "is_service": false,
+    "is_repository": false,
+    "is_component": false,
+    "is_entity": false,
+    "is_config": false
+  }
+}

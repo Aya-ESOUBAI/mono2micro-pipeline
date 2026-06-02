@@ -1,0 +1,29 @@
+{
+  "best_k": 5,
+  "best_silhouette": 0.5966,
+  "all_silhouette_scores": {
+    "2": 0.4245,
+    "3": 0.5061,
+    "4": 0.5951,
+    "5": 0.5966,
+    "6": 0.5536
+  },
+  "linkage_method": "ward",
+  "n_classes": 14,
+  "cluster_labels": {
+    "Owner": 5,
+    "PetController": 2,
+    "PetValidator": 4,
+    "Vet": 4,
+    "Visit": 4,
+    "PetClinicApplication": 3,
+    "PetClinicRuntimeHints": 3,
+    "VetController": 1,
+    "VisitController": 1,
+    "OwnerController": 2,
+    "Pet": 4,
+    "PetTypeFormatter": 3,
+    "CacheConfiguration": 3,
+    "WebConfiguration": 3
+  }
+}
