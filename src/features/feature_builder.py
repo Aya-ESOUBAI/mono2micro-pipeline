@@ -33,7 +33,7 @@ TABLES = ["owners", "pets", "visits", "vets", "specialties",
 # ── camelCase tokeniser ────────────────────────────────────────────────────────
 
 def camel_split(token: str) -> list[str]:
-    """'OwnerRepository' → ['Owner', 'Repository'] → lower."""
+    """'OwnerRepository' -> ['Owner', 'Repository'] -> lower."""
     parts = re.sub(r'([A-Z][a-z]+)', r' \1', token).split()
     return [p.lower() for p in parts if len(p) > 1]
 

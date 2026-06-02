@@ -64,7 +64,7 @@ class LogParser:
         class_endpoints: dict[str, set[str]] = defaultdict(set)
 
         for line in lines:
-            # new request → new trace
+            # new request -> new trace
             http_m = HTTP_REQUEST_PAT.search(line)
             if http_m:
                 if current_trace and current_trace["classes"]:
@@ -102,7 +102,7 @@ class LogParser:
             "class_features": class_features,
             "endpoint_counts": dict(endpoint_counts),
         }
-        (self.output_dir / "logs_features.json").write_text(json.dumps(out, indent=2))
+        (self.output_dir / "logs_features.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
         log.info("logs_features.json: %d traces, %d class entries",
                  len(traces), len(class_features))
 
@@ -122,7 +122,7 @@ class LogParser:
             ),
         }
         (self.output_dir / "logs_features.json").write_text(
-            json.dumps(placeholder, indent=2)
+            json.dumps(placeholder, indent=2), encoding="utf-8"
         )
         log.info("Wrote placeholder logs_features.json")
 

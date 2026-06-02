@@ -1,6 +1,6 @@
 """
 Mono2Micro Pipeline — Spring PetClinic
-Orchestrates extraction → feature engineering → similarity matrix → clustering → evaluation
+Orchestrates extraction -> feature engineering -> similarity matrix -> clustering -> evaluation
 """
 import argparse
 import logging

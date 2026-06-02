@@ -33,7 +33,7 @@ from sklearn.metrics import (
 log = logging.getLogger(__name__)
 
 # ── PetClinic ground-truth (spring-petclinic-microservices mapping) ───────────
-# Maps simple class name patterns → target microservice
+# Maps simple class name patterns -> target microservice
 # Source: github.com/spring-petclinic/spring-petclinic-microservices
 BUILTIN_GROUND_TRUTH = {
     # customers-service
@@ -258,17 +258,17 @@ class Evaluator:
             "",
             "| Metric | Better when |",
             "|--------|-------------|",
-            "| ARI    | → 1.0       |",
-            "| NMI    | → 1.0       |",
-            "| Purity | → 1.0       |",
-            "| Silhouette | → 1.0   |",
-            "| Davies-Bouldin | → 0  |",
+            "| ARI    | -> 1.0       |",
+            "| NMI    | -> 1.0       |",
+            "| Purity | -> 1.0       |",
+            "| Silhouette | -> 1.0   |",
+            "| Davies-Bouldin | -> 0  |",
             "| Calinski-Harabasz | higher |",
-            "| SM (intra-call %) | → 1.0 |",
-            "| ICP (inter-call %) | → 0.0 |",
-            "| Modularity Q | → 1.0 |",
+            "| SM (intra-call %) | -> 1.0 |",
+            "| ICP (inter-call %) | -> 0.0 |",
+            "| Modularity Q | -> 1.0 |",
         ]
         report = "\n".join(header) + "\n" + body + "\n".join(footer) + "\n"
         out_path = self.res / "evaluation_report.md"
-        out_path.write_text(report)
-        log.info("Evaluation report → %s", out_path)
+        out_path.write_text(report, encoding="utf-8")
+        log.info("Evaluation report -> %s", out_path)

@@ -13,7 +13,7 @@ Design choices (fixing the original audit):
     a subprocess hook for the Maven-based extractor.
   • Inverse edges are built here (fan_in).
   • All Spring stereotypes are detected.
-  • FK inference: `owner_id` → `owners`, `pet_id` → `pets`, etc.
+  • FK inference: `owner_id` -> `owners`, `pet_id` -> `pets`, etc.
 """
 
 import json
@@ -44,7 +44,7 @@ PETCLINIC_TABLES = ["owners", "pets", "visits", "vets", "specialties",
                     "vet_specialties", "types", "pet_types"]
 
 FK_PATTERN = re.compile(
-    r'(\w+)_id\b',           # column_id → table
+    r'(\w+)_id\b',           # column_id -> table
     re.IGNORECASE,
 )
 JPQL_TABLE_PATTERN = re.compile(
@@ -92,7 +92,7 @@ class JavaFile:
             key = STEREOTYPE_ANNOTATIONS.get(ann)
             if key:
                 out[key] = True
-        # Interface extending *Repository → is_repository
+        # Interface extending *Repository -> is_repository
         if REPO_EXTENDS.search(self.source):
             out["is_repository"] = True
         return out
@@ -127,12 +127,12 @@ class JavaFile:
             candidate = m.group(1).lower()
             if candidate in PETCLINIC_TABLES:
                 tables.add(candidate)
-        # Repository generic arg → entity → table (Owner→owners, Pet→pets …)
+        # Repository generic arg -> entity -> table (Owner->owners, Pet->pets …)
         for m in REPO_EXTENDS.finditer(self.source):
             entity = m.group(1).lower() + "s"   # pluralise naively
             if entity in PETCLINIC_TABLES:
                 tables.add(entity)
-        # Class name itself — OwnerRepository → owners
+        # Class name itself — OwnerRepository -> owners
         stem = self.class_name.lower().replace("repository", "").replace("service", "")
         plural = stem + "s"
         if plural in PETCLINIC_TABLES:
@@ -185,12 +185,12 @@ class JavaExtractor:
         self._write_call_graph()
         self._write_db_features()
         self._write_stereotype_map()
-        log.info("Extraction complete → %s", self.output_dir)
+        log.info("Extraction complete -> %s", self.output_dir)
 
     # ── graph building ────────────────────────────────────────────────────────
 
     def _build_class_index(self) -> dict[str, str]:
-        """simple_name → FQN"""
+        """simple_name -> FQN"""
         return {jf.class_name: jf.fqn for jf in self.java_files}
 
     def _write_call_graph(self):
@@ -239,7 +239,7 @@ class JavaExtractor:
 
         cg = {"nodes": nodes, "edges": edges_raw}
         out = self.output_dir / "call_graph.json"
-        out.write_text(json.dumps(cg, indent=2))
+        out.write_text(json.dumps(cg, indent=2), encoding="utf-8")
         log.info("call_graph.json: %d nodes, %d edges", len(nodes), len(edges_raw))
 
     def _write_db_features(self):
@@ -282,13 +282,13 @@ class JavaExtractor:
             "allTables": PETCLINIC_TABLES,
         }
         out = self.output_dir / "db_features.json"
-        out.write_text(json.dumps(db, indent=2))
+        out.write_text(json.dumps(db, indent=2), encoding="utf-8")
         log.info("db_features.json: %d classes", len(class_db))
 
     def _write_stereotype_map(self):
         sm = {jf.fqn: jf.stereotypes for jf in self.java_files}
         out = self.output_dir / "stereotype_map.json"
-        out.write_text(json.dumps(sm, indent=2))
+        out.write_text(json.dumps(sm, indent=2), encoding="utf-8")
         log.info("stereotype_map.json: %d entries", len(sm))
 
     # ── synthetic data (demo when no sources present) ─────────────────────────

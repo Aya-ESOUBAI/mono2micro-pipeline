@@ -104,7 +104,7 @@ class Clusterer:
         self._run_louvain(D, fqns)
         self._run_spectral(D, fqns, N)
 
-        log.info("Clustering complete → %s", self.res)
+        log.info("Clustering complete -> %s", self.res)
 
     # ── HAC ──────────────────────────────────────────────────────────────────
 
@@ -131,7 +131,7 @@ class Clusterer:
             fig.tight_layout()
             fig.savefig(self.res / "dendrogram.png", dpi=120)
             plt.close(fig)
-            log.info("Dendrogram saved → clustering_results/dendrogram.png")
+            log.info("Dendrogram saved -> clustering_results/dendrogram.png")
         except Exception as exc:
             log.warning("Could not save dendrogram: %s", exc)
 
