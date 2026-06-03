@@ -148,7 +148,7 @@ Then pass as `gamma` component in `SimilarityMatrixBuilder`.
 
 ---
 
-## PhD Audit Checklist
+## PFA Audit Checklist
 
 - [x] SymbolSolver-ready extractor; `toClass` resolved to FQNs
 - [x] Inverse edges built → `fan_in` non-zero
