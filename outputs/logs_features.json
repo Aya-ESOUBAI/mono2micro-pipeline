@@ -1,6 +1,0 @@
-{
-  "traces": [],
-  "class_features": [],
-  "endpoint_counts": {},
-  "_warning": "No real log file found. Run PetClinic with DEBUG logging + a JMeter scenario, then call LogParser('app.log', 'outputs').run() again."
-}

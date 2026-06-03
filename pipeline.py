@@ -1,6 +1,7 @@
 """
 Mono2Micro Pipeline — Spring PetClinic
-Orchestrates extraction -> feature engineering -> similarity matrix -> clustering -> evaluation
+Orchestrates: extraction -> features -> similarity -> clustering -> evaluation
+OpenBLAS-free: all steps use pure Python or CSV-only pandas.
 """
 import argparse
 import logging
@@ -19,58 +20,50 @@ STEPS = ["extract", "features", "similarity", "cluster", "evaluate", "all"]
 
 def run_extract(cfg):
     from src.extractor.java_extractor import JavaExtractor
-    ex = JavaExtractor(cfg["src_root"], cfg["output_dir"])
-    ex.run()
+    JavaExtractor(cfg["src_root"], cfg["output_dir"]).run()
 
 
 def run_features(cfg):
     from src.features.feature_builder import FeatureBuilder
-    fb = FeatureBuilder(cfg["output_dir"])
-    fb.run()
+    FeatureBuilder(cfg["output_dir"]).run()
 
 
 def run_similarity(cfg):
     from src.features.similarity_matrix import SimilarityMatrixBuilder
-    sb = SimilarityMatrixBuilder(cfg["output_dir"], weights=cfg.get("weights"))
-    sb.run()
+    SimilarityMatrixBuilder(cfg["output_dir"], weights=cfg.get("weights")).run()
 
 
 def run_cluster(cfg):
     from src.clustering.clusterer import Clusterer
-    c = Clusterer(cfg["output_dir"], n_clusters=cfg.get("n_clusters", 5))
-    c.run()
+    Clusterer(cfg["output_dir"], n_clusters=cfg.get("n_clusters", 5)).run()
 
 
 def run_evaluate(cfg):
     from src.evaluation.evaluator import Evaluator
-    e = Evaluator(cfg["output_dir"], cfg.get("ground_truth_csv"))
-    e.run()
+    Evaluator(cfg["output_dir"], cfg.get("ground_truth_csv")).run()
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Mono2Micro Pipeline for Spring PetClinic")
-    parser.add_argument("step", choices=STEPS, help="Pipeline step to execute")
-    parser.add_argument("--src", default="spring-petclinic/src/main/java",
-                        help="Path to PetClinic Java sources")
-    parser.add_argument("--output", default="outputs", help="Output directory")
-    parser.add_argument("--ground-truth", default=None, help="Path to ground_truth.csv")
-    parser.add_argument("--n-clusters", type=int, default=5)
-    parser.add_argument("--alpha", type=float, default=0.35, help="Structural weight")
-    parser.add_argument("--beta",  type=float, default=0.30, help="Data-access weight")
-    parser.add_argument("--gamma", type=float, default=0.20, help="Semantic weight")
-    parser.add_argument("--delta", type=float, default=0.15, help="Behavioral weight")
+    parser = argparse.ArgumentParser(description="Mono2Micro Pipeline")
+    parser.add_argument("step", choices=STEPS)
+    parser.add_argument("--src",     default="spring-petclinic/src/main/java")
+    parser.add_argument("--output",  default="outputs")
+    parser.add_argument("--ground-truth", default=None)
+    parser.add_argument("--n-clusters",   type=int, default=5)
+    parser.add_argument("--alpha", type=float, default=0.35)
+    parser.add_argument("--beta",  type=float, default=0.30)
+    parser.add_argument("--gamma", type=float, default=0.20)
+    parser.add_argument("--delta", type=float, default=0.15)
     args = parser.parse_args()
 
     cfg = {
-        "src_root":       args.src,
-        "output_dir":     args.output,
+        "src_root":         args.src,
+        "output_dir":       args.output,
         "ground_truth_csv": args.ground_truth,
-        "n_clusters":     args.n_clusters,
+        "n_clusters":       args.n_clusters,
         "weights": {
-            "alpha": args.alpha,
-            "beta":  args.beta,
-            "gamma": args.gamma,
-            "delta": args.delta,
+            "alpha": args.alpha, "beta": args.beta,
+            "gamma": args.gamma, "delta": args.delta,
         },
     }
 
@@ -83,8 +76,8 @@ def main():
     }
 
     if args.step == "all":
-        for step_name, fn in dispatch.items():
-            log.info("═══ STEP: %s ═══", step_name.upper())
+        for name, fn in dispatch.items():
+            log.info("=== STEP: %s ===", name.upper())
             fn(cfg)
     else:
         dispatch[args.step](cfg)

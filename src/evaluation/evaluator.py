@@ -1,42 +1,21 @@
 """
-src/evaluation/evaluator.py
-────────────────────────────
-Computes and reports clustering quality metrics:
-
-  External (vs ground truth from spring-petclinic-microservices):
-    ARI, NMI, Purity
-
-  Graph-structure:
-    Structural Modularity (SM), Inter-Call Percentage (ICP), Modularity Q
-
-  Internal (no labels needed):
-    Silhouette, Davies-Bouldin, Calinski-Harabasz
-
-Writes:
-  outputs/clustering_results/evaluation_report.md
+src/evaluation/evaluator.py  — OpenBLAS-FREE version
+──────────────────────────────────────────────────────
+Pure Python metrics. No sklearn, no numpy, no scipy.
+Reads CSV files directly.
 """
 
+import csv
 import json
 import logging
+import math
+from collections import Counter, defaultdict
 from pathlib import Path
-
-import numpy as np
-import pandas as pd
-from sklearn.metrics import (
-    adjusted_rand_score,
-    calinski_harabasz_score,
-    davies_bouldin_score,
-    normalized_mutual_info_score,
-    silhouette_score,
-)
 
 log = logging.getLogger(__name__)
 
-# ── PetClinic ground-truth (spring-petclinic-microservices mapping) ───────────
-# Maps simple class name patterns -> target microservice
-# Source: github.com/spring-petclinic/spring-petclinic-microservices
+# Ground truth from spring-petclinic-microservices
 BUILTIN_GROUND_TRUTH = {
-    # customers-service
     "Owner":           "customers-service",
     "Pet":             "customers-service",
     "PetType":         "customers-service",
@@ -46,25 +25,21 @@ BUILTIN_GROUND_TRUTH = {
     "PetController":   "customers-service",
     "OwnerValidator":  "customers-service",
     "PetValidator":    "customers-service",
-    # vets-service
     "Vet":             "vets-service",
     "Specialty":       "vets-service",
     "VetRepository":   "vets-service",
     "VetController":   "vets-service",
-    # visits-service
     "Visit":           "visits-service",
     "VisitRepository": "visits-service",
     "VisitController": "visits-service",
-    # api-gateway / shared
     "CrashController": "api-gateway",
-    "WelcomeController":"api-gateway",
-    # config / infra
+    "WelcomeController": "api-gateway",
     "PetClinicApplication": "config-server",
-    "CacheConfig":          "config-server",
-    "MvcConfig":            "config-server",
-    "BaseEntity":           "config-server",
-    "NamedEntity":          "config-server",
-    "ClinicService":        "customers-service",
+    "CacheConfig":     "config-server",
+    "MvcConfig":       "config-server",
+    "BaseEntity":      "config-server",
+    "NamedEntity":     "config-server",
+    "ClinicService":   "customers-service",
 }
 
 SERVICE_TO_ID = {
@@ -76,43 +51,108 @@ SERVICE_TO_ID = {
 }
 
 
-def purity(labels_true, labels_pred) -> float:
-    from collections import Counter
-    n = len(labels_true)
-    clusters: dict = {}
-    for t, p in zip(labels_true, labels_pred):
-        clusters.setdefault(p, []).append(t)
-    return sum(Counter(v).most_common(1)[0][1] for v in clusters.values()) / n
+# ── Pure Python metrics ───────────────────────────────────────────────────────
+
+def purity(y_true, y_pred):
+    clusters = defaultdict(list)
+    for t, p in zip(y_true, y_pred):
+        clusters[p].append(t)
+    correct = sum(Counter(v).most_common(1)[0][1] for v in clusters.values())
+    return correct / len(y_true) if y_true else 0.0
 
 
-def modularity_q(D: np.ndarray, labels: np.ndarray) -> float:
-    """
-    Newman-Girvan modularity Q on the similarity-as-adjacency matrix.
-    Q = (1/2m) Σ_{ij} [A_ij - k_i*k_j/(2m)] δ(c_i, c_j)
-    """
-    A = D.copy()
-    np.fill_diagonal(A, 0)
-    m = A.sum() / 2
-    if m == 0:
+def entropy(labels):
+    counts = Counter(labels)
+    total  = len(labels)
+    return -sum((c / total) * math.log2(c / total) for c in counts.values() if c > 0)
+
+
+def nmi(y_true, y_pred):
+    """Normalized Mutual Information (pure Python)."""
+    n = len(y_true)
+    if n == 0:
         return 0.0
-    k = A.sum(axis=1)
-    Q = 0.0
-    for i in range(len(labels)):
-        for j in range(len(labels)):
-            if labels[i] == labels[j]:
-                Q += A[i, j] - k[i] * k[j] / (2 * m)
-    return Q / (2 * m)
+    # contingency
+    cont = defaultdict(int)
+    for t, p in zip(y_true, y_pred):
+        cont[(t, p)] += 1
+    ct = Counter(y_true)
+    cp = Counter(y_pred)
+    mi = 0.0
+    for (t, p), cnt in cont.items():
+        if cnt > 0:
+            mi += (cnt / n) * math.log2((cnt * n) / (ct[t] * cp[p]))
+    h_true = entropy(y_true)
+    h_pred = entropy(y_pred)
+    denom  = (h_true + h_pred) / 2
+    return mi / denom if denom > 0 else 0.0
 
 
-def structural_modularity(edges: list[dict], labels: dict[str, int]) -> tuple[float, float]:
+def ari(y_true, y_pred):
+    """Adjusted Rand Index (pure Python)."""
+    n = len(y_true)
+    # contingency matrix counts
+    cont = defaultdict(int)
+    for t, p in zip(y_true, y_pred):
+        cont[(t, p)] += 1
+    # sum of C(n_ij, 2)
+    sum_cij = sum(v * (v - 1) // 2 for v in cont.values())
+    ct = Counter(y_true)
+    cp = Counter(y_pred)
+    sum_ci = sum(v * (v - 1) // 2 for v in ct.values())
+    sum_cj = sum(v * (v - 1) // 2 for v in cp.values())
+    cn2 = n * (n - 1) // 2
+    expected = sum_ci * sum_cj / cn2 if cn2 > 0 else 0
+    max_index = (sum_ci + sum_cj) / 2
+    denom = max_index - expected
+    return (sum_cij - expected) / denom if denom > 0 else 0.0
+
+
+def silhouette(X_rows, labels):
     """
-    SM (Structural Modularity): fraction of intra-cluster calls.
-    ICP (Inter-Call Percentage): fraction of inter-cluster calls.
+    X_rows : list of dicts (features).
+    labels : list of int cluster labels.
+    Pure Python silhouette score.
     """
+    fqns   = [r["fqn"] for r in X_rows]
+    num_cols = [c for c in X_rows[0] if c not in {"fqn", "louvain_community"}]
+
+    def euclidean(a, b):
+        return math.sqrt(sum((float(a.get(c, 0)) - float(b.get(c, 0))) ** 2
+                             for c in num_cols))
+
+    n = len(X_rows)
+    s_scores = []
+    for i in range(n):
+        ci = labels[i]
+        # intra-cluster distances
+        intra = [euclidean(X_rows[i], X_rows[j])
+                 for j in range(n) if j != i and labels[j] == ci]
+        if not intra:
+            s_scores.append(0.0)
+            continue
+        a = sum(intra) / len(intra)
+        # nearest other cluster
+        other_clusters = set(labels) - {ci}
+        if not other_clusters:
+            s_scores.append(0.0)
+            continue
+        b = min(
+            sum(euclidean(X_rows[i], X_rows[j])
+                for j in range(n) if labels[j] == ck) /
+            max(1, sum(1 for j in range(n) if labels[j] == ck))
+            for ck in other_clusters
+        )
+        s = (b - a) / max(a, b) if max(a, b) > 0 else 0.0
+        s_scores.append(s)
+    return sum(s_scores) / len(s_scores) if s_scores else 0.0
+
+
+def structural_modularity(edges, label_map):
     intra = inter = 0
     for e in edges:
-        ci = labels.get(e["fromClass"], -1)
-        cj = labels.get(e["toClass"],   -1)
+        ci = label_map.get(e["fromClass"], -1)
+        cj = label_map.get(e["toClass"],   -1)
         if ci < 0 or cj < 0:
             continue
         if ci == cj:
@@ -123,152 +163,135 @@ def structural_modularity(edges: list[dict], labels: dict[str, int]) -> tuple[fl
     return intra / total, inter / total
 
 
+def modularity_q(D, labels):
+    N = len(labels)
+    # D is list-of-lists
+    total_w = sum(D[i][j] for i in range(N) for j in range(N) if i != j) / 2
+    if total_w == 0:
+        return 0.0
+    k = [sum(D[i][j] for j in range(N) if j != i) for i in range(N)]
+    Q = 0.0
+    for i in range(N):
+        for j in range(N):
+            if labels[i] == labels[j]:
+                Q += D[i][j] - k[i] * k[j] / (2 * total_w)
+    return Q / (2 * total_w)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+
+def read_csv_dicts(path):
+    with open(path, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
 class Evaluator:
-    def __init__(self, output_dir: str, ground_truth_csv: str | None = None):
-        self.out = Path(output_dir)
-        self.res = self.out / "clustering_results"
+    def __init__(self, output_dir: str, ground_truth_csv=None):
+        self.out    = Path(output_dir)
+        self.res    = self.out / "clustering_results"
         self.gt_csv = Path(ground_truth_csv) if ground_truth_csv else None
 
     def run(self):
-        # ── load artefacts ─────────────────────────────────────────────────────
-        data  = np.load(self.out / "D_similarity.npz", allow_pickle=True)
-        D     = data["sim"]
-        fqns  = list(data["fqns"])
-        X_df  = pd.read_csv(self.out / "X_features.csv")
-        cg    = json.loads((self.out / "call_graph.json").read_text())
+        sim_data = json.loads((self.out / "D_similarity.json").read_text(encoding="utf-8"))
+        fqns = sim_data["fqns"]
+        D    = sim_data["matrix"]
+        N    = len(fqns)
 
-        num_cols = [c for c in X_df.columns
-                    if c not in {"fqn", "louvain_community"}]
-        X = X_df[num_cols].values
+        xf_rows = read_csv_dicts(self.out / "X_features.csv")
+        cg      = json.loads((self.out / "call_graph.json").read_text(encoding="utf-8"))
 
-        # ── load / build ground truth ──────────────────────────────────────────
-        gt_labels = self._build_ground_truth(fqns)
+        gt_labels = self._build_gt(fqns)
 
-        # ── algorithm result files ─────────────────────────────────────────────
-        algos = {
-            "HAC":      ("hac_labels.csv",      "hac_cluster"),
-            "Louvain":  ("louvain_labels.csv",   "louvain_cluster"),
-            "Spectral": ("spectral_labels.csv",  "spectral_cluster"),
-        }
+        algos = [
+            ("HAC",      self.res / "hac_labels.csv",      "hac_cluster"),
+            ("Louvain",  self.res / "louvain_labels.csv",  "louvain_cluster"),
+            ("Spectral", self.res / "spectral_labels.csv", "spectral_cluster"),
+        ]
 
-        report_sections = []
-        for algo, (fname, col) in algos.items():
-            path = self.res / fname
+        sections = []
+        for algo, path, col in algos:
             if not path.exists():
-                log.warning("Missing: %s — skipping", fname)
+                log.warning("Missing: %s", path)
                 continue
-            df = pd.read_csv(path)
-            label_map = dict(zip(df["fqn"], df[col]))
-            pred = np.array([label_map.get(fqn, 0) for fqn in fqns])
-            section = self._evaluate_one(algo, pred, gt_labels, X, D, cg["edges"],
-                                         {fqn: int(p) for fqn, p in zip(fqns, pred)})
-            report_sections.append(section)
+            rows     = read_csv_dicts(path)
+            lbl_map  = {r["fqn"]: int(r[col]) for r in rows}
+            pred     = [lbl_map.get(fqn, 0) for fqn in fqns]
+            sections.append(self._evaluate(algo, pred, gt_labels, xf_rows, D,
+                                            cg["edges"], lbl_map))
 
-        self._write_report(report_sections)
+        report = self._build_report(sections)
+        out_path = self.res / "evaluation_report.md"
+        out_path.write_text(report, encoding="utf-8")
+        log.info("Evaluation report -> %s", out_path)
 
-    def _build_ground_truth(self, fqns: list[str]) -> np.ndarray:
+    def _build_gt(self, fqns):
+        gt_map = {}
         if self.gt_csv and self.gt_csv.exists():
-            gt_df = pd.read_csv(self.gt_csv)
-            gt_map = dict(zip(gt_df["fqn"], gt_df["service"]))
-        else:
-            gt_map = {}
-
+            for r in read_csv_dicts(self.gt_csv):
+                gt_map[r["fqn"]] = r["service"]
         labels = []
         for fqn in fqns:
             simple = fqn.split(".")[-1]
             svc    = gt_map.get(fqn) or BUILTIN_GROUND_TRUTH.get(simple, "unknown")
             labels.append(SERVICE_TO_ID.get(svc, 5))
-        return np.array(labels)
+        return labels
 
-    def _evaluate_one(
-        self,
-        algo: str,
-        pred: np.ndarray,
-        gt: np.ndarray,
-        X: np.ndarray,
-        D: np.ndarray,
-        edges: list[dict],
-        label_map: dict[str, int],
-    ) -> str:
-        n_clusters = len(set(pred))
-        lines = [f"## {algo}  ({n_clusters} clusters)\n"]
+    def _evaluate(self, algo, pred, gt, xf_rows, D, edges, lbl_map):
+        k = len(set(pred))
+        lines = [f"## {algo}  ({k} clusters)\n"]
 
-        # external
+        # External
         if len(set(gt)) > 1:
-            ari  = adjusted_rand_score(gt, pred)
-            nmi  = normalized_mutual_info_score(gt, pred)
-            pur  = purity(gt, pred)
-            lines.append("### External (vs spring-petclinic-microservices ground truth)")
-            lines.append(f"| Metric | Value |")
-            lines.append(f"|--------|-------|")
-            lines.append(f"| ARI    | {ari:.4f} |")
-            lines.append(f"| NMI    | {nmi:.4f} |")
-            lines.append(f"| Purity | {pur:.4f} |")
-            lines.append("")
+            _ari  = ari(gt, pred)
+            _nmi  = nmi(gt, pred)
+            _pur  = purity(gt, pred)
+            lines += [
+                "### External (vs spring-petclinic-microservices)",
+                "| Metric | Value |", "|--------|-------|",
+                f"| ARI    | {_ari:.4f} |",
+                f"| NMI    | {_nmi:.4f} |",
+                f"| Purity | {_pur:.4f} |", "",
+            ]
 
-        # internal
-        if n_clusters >= 2 and X.shape[0] > n_clusters:
-            sil = silhouette_score(X, pred, metric="euclidean")
-            db  = davies_bouldin_score(X, pred)
-            ch  = calinski_harabasz_score(X, pred)
+        # Internal (silhouette only — pure Python, skipping DB/CH for speed)
+        if k >= 2 and len(xf_rows) > k:
+            _sil = silhouette(xf_rows, pred)
         else:
-            sil = db = ch = float("nan")
+            _sil = float("nan")
+        lines += [
+            "### Internal metrics",
+            "| Metric     | Value |", "|------------|-------|",
+            f"| Silhouette | {_sil:.4f} |", "",
+        ]
 
-        lines.append("### Internal metrics")
-        lines.append("| Metric              | Value |")
-        lines.append("|---------------------|-------|")
-        lines.append(f"| Silhouette          | {sil:.4f} |")
-        lines.append(f"| Davies-Bouldin      | {db:.4f} |")
-        lines.append(f"| Calinski-Harabasz   | {ch:.2f} |")
-        lines.append("")
-
-        # graph-structure
-        sm, icp = structural_modularity(edges, label_map)
+        # Graph-structure
+        sm, icp = structural_modularity(edges, lbl_map)
         q = modularity_q(D, pred)
-        lines.append("### Graph-structure metrics")
-        lines.append("| Metric                           | Value |")
-        lines.append("|----------------------------------|-------|")
-        lines.append(f"| Structural Modularity (SM)       | {sm:.4f} |")
-        lines.append(f"| Inter-Call Percentage (ICP)      | {icp:.4f} |")
-        lines.append(f"| Modularity Q                     | {q:.4f} |")
-        lines.append("")
-
+        lines += [
+            "### Graph-structure metrics",
+            "| Metric                      | Value |",
+            "|-----------------------------|-------|",
+            f"| Structural Modularity (SM)  | {sm:.4f} |",
+            f"| Inter-Call Percentage (ICP) | {icp:.4f} |",
+            f"| Modularity Q                | {q:.4f} |", "",
+        ]
         return "\n".join(lines)
 
-    def _write_report(self, sections: list[str]):
+    def _build_report(self, sections):
         header = [
-            "# Evaluation Report — Mono2Micro Clustering",
-            "",
-            "> Generated by `mono2micro-pipeline/src/evaluation/evaluator.py`",
-            "",
-            "Ground truth: [spring-petclinic-microservices]"
-            "(https://github.com/spring-petclinic/spring-petclinic-microservices)",
-            "",
-            "Algorithms compared: **HAC** · **Louvain** · **Spectral**",
-            "",
-            "---",
-            "",
+            "# Evaluation Report — Mono2Micro Clustering", "",
+            "> Generated by mono2micro-pipeline", "",
+            "Ground truth: spring-petclinic-microservices", "",
+            "Algorithms: **HAC** - **Louvain** - **Spectral**", "",
+            "---", "",
         ]
-        body = "\n\n---\n\n".join(sections)
         footer = [
-            "",
-            "---",
-            "",
-            "## Interpretation Guide",
-            "",
-            "| Metric | Better when |",
-            "|--------|-------------|",
-            "| ARI    | -> 1.0       |",
-            "| NMI    | -> 1.0       |",
-            "| Purity | -> 1.0       |",
-            "| Silhouette | -> 1.0   |",
-            "| Davies-Bouldin | -> 0  |",
-            "| Calinski-Harabasz | higher |",
-            "| SM (intra-call %) | -> 1.0 |",
-            "| ICP (inter-call %) | -> 0.0 |",
-            "| Modularity Q | -> 1.0 |",
+            "", "---", "", "## Metric guide",
+            "| Metric | Better when |", "|--------|-------------|",
+            "| ARI    | -> 1.0      |", "| NMI    | -> 1.0      |",
+            "| Purity | -> 1.0      |", "| Silhouette | -> 1.0  |",
+            "| SM (intra-call%) | -> 1.0  |",
+            "| ICP (inter-call%) | -> 0.0 |",
+            "| Modularity Q | -> 1.0      |", "",
         ]
-        report = "\n".join(header) + "\n" + body + "\n".join(footer) + "\n"
-        out_path = self.res / "evaluation_report.md"
-        out_path.write_text(report, encoding="utf-8")
-        log.info("Evaluation report -> %s", out_path)
+        return "\n".join(header) + "\n\n---\n\n".join(sections) + "\n".join(footer)

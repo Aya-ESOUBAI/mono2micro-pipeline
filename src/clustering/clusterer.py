@@ -1,175 +1,326 @@
 """
-src/clustering/clusterer.py
-────────────────────────────
-Runs three clustering algorithms on D_similarity.npz:
-  1. HAC (Hierarchical Agglomerative Clustering) — Ward linkage
-  2. Louvain / Leiden (modularity-maximising graph partitioning)
-  3. Spectral Clustering
+src/clustering/clusterer.py  — OpenBLAS-FREE version
+──────────────────────────────────────────────────────
+Pure Python clustering. Reads D_similarity.json.
+No scipy linkage, no sklearn SpectralClustering (both trigger OpenBLAS).
 
-Outputs:
-  outputs/clustering_results/hac_labels.csv
-  outputs/clustering_results/louvain_labels.csv
-  outputs/clustering_results/spectral_labels.csv
-  outputs/clustering_results/dendrogram.png   (HAC)
+Algorithms:
+  1. HAC  — pure Python Ward-like agglomerative (average linkage)
+  2. Louvain — greedy modularity (pure Python)
+  3. Spectral-lite — power-iteration on normalised Laplacian + k-means (pure Python)
 """
 
+import csv
 import json
 import logging
+import math
+import random
+from collections import defaultdict
 from pathlib import Path
-
-import numpy as np
-import pandas as pd
-from scipy.cluster.hierarchy import dendrogram, fcluster, linkage
-from scipy.spatial.distance import squareform
-from sklearn.cluster import SpectralClustering
 
 log = logging.getLogger(__name__)
 
 
-# ── Pure-Python Louvain (no external lib dependency) ─────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Shared helpers
+# ─────────────────────────────────────────────────────────────────────────────
 
-def louvain_partition(D: np.ndarray, fqns: list[str], resolution: float = 1.0) -> np.ndarray:
+def read_sim(output_dir):
+    path = Path(output_dir) / "D_similarity.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return data["fqns"], data["matrix"]
+
+
+def write_labels(path, fqns, labels, col_name):
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["fqn", col_name])
+        for fqn, lbl in zip(fqns, labels):
+            w.writerow([fqn, lbl])
+    n_clusters = len(set(labels))
+    log.info("%s: %d clusters", Path(path).name, n_clusters)
+    return n_clusters
+
+
+def dist_mat(D):
+    """Return distance matrix = 1 - similarity, clipped to [0,1]."""
+    return [[max(0.0, min(1.0, 1.0 - D[i][j]))
+             for j in range(len(D[i]))]
+            for i in range(len(D))]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. HAC — average linkage (pure Python)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def hac_average(dist, k):
     """
-    Greedy modularity-maximising partition on the weighted adjacency D.
-    Returns label array of length N.
-
-    For production: use `python-louvain` (community library) or `leidenalg`.
-    This implementation is correct for small graphs (N < 100).
+    Agglomerative clustering with average linkage.
+    dist : N x N list-of-lists (distances).
+    k    : target number of clusters.
+    Returns list of cluster labels (int, 0-indexed).
     """
-    N = len(fqns)
-    labels = np.arange(N)  # each node in its own community
-    W = D.copy()
-    np.fill_diagonal(W, 0)
-    m = W.sum() / 2 or 1.0
-    k = W.sum(axis=1)            # node strengths
+    N = len(dist)
+    # each node starts in its own cluster
+    cluster_of  = list(range(N))          # node -> cluster id
+    members     = {i: [i] for i in range(N)}  # cluster id -> node list
+    active      = set(range(N))
 
-    improved = True
-    max_iter = 50
-    iteration = 0
-    while improved and iteration < max_iter:
-        improved = False
-        iteration += 1
+    linkage_log = []   # (distance, merged_a, merged_b) for dendrogram text
+
+    while len(active) > k:
+        # find closest pair of active clusters
+        best_d = float("inf")
+        best_a = best_b = -1
+        active_list = sorted(active)
+        for ii, a in enumerate(active_list):
+            for b in active_list[ii + 1:]:
+                # average linkage: mean of all pairwise distances
+                d_sum = 0.0
+                count = 0
+                for na in members[a]:
+                    for nb in members[b]:
+                        d_sum += dist[na][nb]
+                        count += 1
+                avg_d = d_sum / count if count else float("inf")
+                if avg_d < best_d:
+                    best_d = avg_d
+                    best_a, best_b = a, b
+
+        # merge best_b into best_a
+        linkage_log.append((round(best_d, 4), best_a, best_b))
+        members[best_a].extend(members[best_b])
+        for node in members[best_b]:
+            cluster_of[node] = best_a
+        del members[best_b]
+        active.discard(best_b)
+
+    # relabel clusters 0..k-1
+    mapping = {cid: i for i, cid in enumerate(sorted(active))}
+    labels  = [mapping[cluster_of[n]] for n in range(N)]
+
+    # save text dendrogram
+    return labels, linkage_log
+
+
+def save_text_dendrogram(linkage_log, fqns, path):
+    lines = ["HAC Dendrogram (average linkage)\n",
+             "Steps are shown bottom-up (last merge = root)\n",
+             "=" * 60 + "\n"]
+    active_names = {i: fqns[i].split(".")[-1] for i in range(len(fqns))}
+    ctr = len(fqns)
+    tmp = {i: fqns[i].split(".")[-1] for i in range(len(fqns))}
+    for step, (d, a, b) in enumerate(linkage_log, 1):
+        na = tmp.get(a, f"cluster_{a}")
+        nb = tmp.get(b, f"cluster_{b}")
+        new_name = f"[{na} + {nb}]"
+        tmp[a]  = new_name
+        lines.append(f"Step {step:3d}  dist={d:.4f}  {na}  +  {nb}\n")
+    with open(path, "w", encoding="utf-8") as f:
+        f.writelines(lines)
+    log.info("Dendrogram text saved -> %s", path)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2. Louvain — pure Python
+# ─────────────────────────────────────────────────────────────────────────────
+
+def louvain(D, max_iter=40):
+    N = len(D)
+    W = [[D[i][j] if i != j else 0.0 for j in range(N)] for i in range(N)]
+    m = sum(W[i][j] for i in range(N) for j in range(N)) / 2 or 1.0
+    k = [sum(W[i]) for i in range(N)]
+
+    labels = list(range(N))
+
+    for _ in range(max_iter):
+        changed = False
         for i in range(N):
             ci = labels[i]
-            neighbours = np.where(W[i] > 0)[0]
-            if len(neighbours) == 0:
-                continue
-
-            # communities of neighbours
-            comm_delta: dict[int, float] = {}
-            for j in neighbours:
+            comm_delta = defaultdict(float)
+            for j in range(N):
+                if i == j or W[i][j] == 0:
+                    continue
                 cj = labels[j]
                 if cj == ci:
                     continue
-                delta = (W[i, j] - resolution * k[i] * k[j] / (2 * m))
-                comm_delta[cj] = comm_delta.get(cj, 0) + delta
+                comm_delta[cj] += W[i][j] - k[i] * k[j] / (2 * m)
 
             if not comm_delta:
                 continue
-
-            best_c, best_gain = max(comm_delta.items(), key=lambda x: x[1])
-            # also compute gain of removing i from ci
-            remove_gain = -sum(
-                W[i, j] - resolution * k[i] * k[labels[j]] / (2 * m)
-                for j in neighbours if labels[j] == ci
+            best_c    = max(comm_delta, key=comm_delta.get)
+            best_gain = comm_delta[best_c]
+            # gain of staying in current community
+            stay_gain = sum(
+                W[i][j] - k[i] * k[labels[j]] / (2 * m)
+                for j in range(N) if j != i and labels[j] == ci
             )
-
-            if best_gain + remove_gain > 1e-10:
+            if best_gain > stay_gain + 1e-9:
                 labels[i] = best_c
-                improved = True
+                changed   = True
+        if not changed:
+            break
 
-    # relabel to 0..K-1
-    unique = {v: idx for idx, v in enumerate(sorted(set(labels)))}
-    return np.array([unique[l] for l in labels])
+    # relabel 0..K-1
+    unique  = sorted(set(labels))
+    mapping = {v: idx for idx, v in enumerate(unique)}
+    return [mapping[l] for l in labels]
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3. Spectral-lite — pure Python k-means on top-k eigenvectors
+# ─────────────────────────────────────────────────────────────────────────────
+
+def mat_mul(A, B):
+    """Multiply two square matrices (list-of-lists)."""
+    n = len(A)
+    C = [[0.0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            s = 0.0
+            for kk in range(n):
+                s += A[i][kk] * B[kk][j]
+            C[i][j] = s
+    return C
+
+
+def power_iteration(A, num_vectors, num_iter=30):
+    """
+    Find top num_vectors eigenvectors of A via block power iteration.
+    A: symmetric n x n (list-of-lists).
+    Returns list of n-vectors (each is a list of floats).
+    """
+    n = len(A)
+    random.seed(42)
+    # start with random matrix Q (n x num_vectors)
+    Q = [[random.gauss(0, 1) for _ in range(num_vectors)] for _ in range(n)]
+
+    for _ in range(num_iter):
+        # Z = A @ Q  (n x num_vectors)
+        Z = [[0.0] * num_vectors for _ in range(n)]
+        for i in range(n):
+            for c in range(num_vectors):
+                s = 0.0
+                for kk in range(n):
+                    s += A[i][kk] * Q[kk][c]
+                Z[i][c] = s
+        # QR decomposition via Gram-Schmidt
+        Q_new = []
+        for c in range(num_vectors):
+            v = [Z[i][c] for i in range(n)]
+            for prev in Q_new:
+                dot = sum(v[i] * prev[i] for i in range(n))
+                v   = [v[i] - dot * prev[i] for i in range(n)]
+            norm = math.sqrt(sum(x * x for x in v)) or 1e-10
+            Q_new.append([x / norm for x in v])
+        Q = [[Q_new[c][i] for c in range(num_vectors)] for i in range(n)]
+
+    # Q is now n x num_vectors; return as list of row vectors
+    return Q  # Q[i] = embedding of node i
+
+
+def kmeans_pure(X, k, max_iter=100):
+    """k-means on list-of-vectors X. Returns list of labels."""
+    n = len(X)
+    dim = len(X[0])
+    random.seed(42)
+    # init centroids by picking k random points
+    centroids = [list(X[i]) for i in random.sample(range(n), min(k, n))]
+
+    labels = [0] * n
+    for _ in range(max_iter):
+        # assign
+        new_labels = []
+        for x in X:
+            best_c = 0
+            best_d = float("inf")
+            for ci, c in enumerate(centroids):
+                d = sum((x[j] - c[j]) ** 2 for j in range(dim))
+                if d < best_d:
+                    best_d = d
+                    best_c = ci
+            new_labels.append(best_c)
+
+        if new_labels == labels:
+            break
+        labels = new_labels
+
+        # update centroids
+        sums   = [[0.0] * dim for _ in range(k)]
+        counts = [0] * k
+        for i, lbl in enumerate(labels):
+            for j in range(dim):
+                sums[lbl][j] += X[i][j]
+            counts[lbl] += 1
+        for ci in range(k):
+            if counts[ci] > 0:
+                centroids[ci] = [s / counts[ci] for s in sums[ci]]
+
+    # relabel 0..k-1 (some clusters may be empty)
+    unique  = sorted(set(labels))
+    mapping = {v: idx for idx, v in enumerate(unique)}
+    return [mapping[l] for l in labels]
+
+
+def spectral_lite(D, k):
+    """
+    Spectral clustering on similarity matrix D.
+    1. Build normalised Laplacian L_sym = I - D^{-1/2} A D^{-1/2}
+    2. Power-iterate to get top-k eigenvectors of A (we skip L for simplicity)
+    3. k-means on eigenvectors
+    """
+    N = len(D)
+    # degree vector
+    deg = [sum(D[i]) for i in range(N)]
+    # D^{-1/2}
+    d_inv_sqrt = [1.0 / math.sqrt(di) if di > 1e-10 else 0.0 for di in deg]
+    # Normalised adjacency A_norm[i][j] = d^{-1/2}[i] * D[i][j] * d^{-1/2}[j]
+    A_norm = [
+        [d_inv_sqrt[i] * D[i][j] * d_inv_sqrt[j] for j in range(N)]
+        for i in range(N)
+    ]
+    # top-k eigenvectors via power iteration
+    vecs = power_iteration(A_norm, num_vectors=min(k, N), num_iter=20)
+    # vecs[i] is the embedding for node i (length k)
+    labels = kmeans_pure(vecs, k)
+    return labels
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Main Clusterer class
+# ─────────────────────────────────────────────────────────────────────────────
 
 class Clusterer:
     def __init__(self, output_dir: str, n_clusters: int = 5):
-        self.out  = Path(output_dir)
-        self.res  = self.out / "clustering_results"
+        self.out = Path(output_dir)
+        self.res = self.out / "clustering_results"
         self.res.mkdir(parents=True, exist_ok=True)
-        self.k    = n_clusters
+        self.k   = n_clusters
 
     def run(self):
-        data = np.load(self.out / "D_similarity.npz", allow_pickle=True)
-        D    = data["sim"]
-        fqns = list(data["fqns"])
-        N    = len(fqns)
-        log.info("Loaded similarity matrix: %d × %d", N, N)
+        fqns, D = read_sim(self.out)
+        N = len(fqns)
+        log.info("Loaded similarity matrix: %d x %d", N, N)
 
-        # distance = 1 - similarity (clipped for numerical safety)
-        dist_mat = np.clip(1 - D, 0, 1)
-
-        self._run_hac(dist_mat, fqns)
-        self._run_louvain(D, fqns)
-        self._run_spectral(D, fqns, N)
-
+        self._run_hac(fqns, D, N)
+        self._run_louvain(fqns, D)
+        self._run_spectral(fqns, D, N)
         log.info("Clustering complete -> %s", self.res)
 
-    # ── HAC ──────────────────────────────────────────────────────────────────
+    def _run_hac(self, fqns, D, N):
+        log.info("Running HAC (average linkage, pure Python) ...")
+        d = dist_mat(D)
+        labels, linkage_log = hac_average(d, self.k)
+        write_labels(self.res / "hac_labels.csv", fqns, labels, "hac_cluster")
+        save_text_dendrogram(linkage_log, fqns, self.res / "dendrogram.txt")
 
-    def _run_hac(self, dist_mat: np.ndarray, fqns: list[str]):
-        log.info("Running HAC (Ward linkage) …")
-        condensed = squareform(dist_mat, checks=False)
-        Z = linkage(condensed, method="ward")
-        labels = fcluster(Z, t=self.k, criterion="maxclust") - 1  # 0-indexed
+    def _run_louvain(self, fqns, D):
+        log.info("Running Louvain (pure Python) ...")
+        labels = louvain(D)
+        write_labels(self.res / "louvain_labels.csv", fqns, labels, "louvain_cluster")
 
-        df = pd.DataFrame({"fqn": fqns, "hac_cluster": labels})
-        df.to_csv(self.res / "hac_labels.csv", index=False)
-        log.info("HAC: %d clusters", len(set(labels)))
-
-        # dendrogram (no display)
-        try:
-            import matplotlib
-            matplotlib.use("Agg")
-            import matplotlib.pyplot as plt
-            short_names = [fqn.split(".")[-1] for fqn in fqns]
-            fig, ax = plt.subplots(figsize=(14, 5))
-            dendrogram(Z, labels=short_names, ax=ax, leaf_rotation=45, leaf_font_size=8)
-            ax.set_title("HAC Dendrogram — Spring PetClinic")
-            ax.set_ylabel("Ward distance")
-            fig.tight_layout()
-            fig.savefig(self.res / "dendrogram.png", dpi=120)
-            plt.close(fig)
-            log.info("Dendrogram saved -> clustering_results/dendrogram.png")
-        except Exception as exc:
-            log.warning("Could not save dendrogram: %s", exc)
-
-    # ── Louvain ───────────────────────────────────────────────────────────────
-
-    def _run_louvain(self, D: np.ndarray, fqns: list[str]):
-        log.info("Running Louvain partition …")
-        # Try python-louvain if installed; fall back to our implementation
-        try:
-            import community as community_louvain
-            import networkx as nx
-            G = nx.from_numpy_array(D)
-            mapping = {i: fqn for i, fqn in enumerate(fqns)}
-            nx.relabel_nodes(G, mapping, copy=False)
-            partition = community_louvain.best_partition(G)
-            labels = [partition[fqn] for fqn in fqns]
-            log.info("Using python-louvain library")
-        except ImportError:
-            log.info("python-louvain not installed — using built-in Louvain")
-            labels = louvain_partition(D, fqns).tolist()
-
-        df = pd.DataFrame({"fqn": fqns, "louvain_cluster": labels})
-        df.to_csv(self.res / "louvain_labels.csv", index=False)
-        log.info("Louvain: %d communities", len(set(labels)))
-
-    # ── Spectral ──────────────────────────────────────────────────────────────
-
-    def _run_spectral(self, D: np.ndarray, fqns: list[str], N: int):
-        log.info("Running Spectral Clustering …")
+    def _run_spectral(self, fqns, D, N):
+        log.info("Running Spectral-lite (pure Python) ...")
         k = min(self.k, N - 1)
-        sc = SpectralClustering(
-            n_clusters=k,
-            affinity="precomputed",
-            assign_labels="kmeans",
-            random_state=42,
-            n_init=10,
-        )
-        labels = sc.fit_predict(D)
-        df = pd.DataFrame({"fqn": fqns, "spectral_cluster": labels})
-        df.to_csv(self.res / "spectral_labels.csv", index=False)
-        log.info("Spectral: %d clusters", len(set(labels)))
+        labels = spectral_lite(D, k)
+        write_labels(self.res / "spectral_labels.csv", fqns, labels, "spectral_cluster")

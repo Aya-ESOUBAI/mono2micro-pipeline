@@ -1,0 +1,28 @@
+HAC Dendrogram (average linkage)
+Steps are shown bottom-up (last merge = root)
+============================================================
+Step   1  dist=0.1500  package-info  +  package-info
+Step   2  dist=0.1500  [package-info + package-info]  +  package-info
+Step   3  dist=0.1500  [[package-info + package-info] + package-info]  +  package-info
+Step   4  dist=0.2123  BaseEntity  +  NamedEntity
+Step   5  dist=0.2513  [[[package-info + package-info] + package-info] + package-info]  +  PetClinicApplication
+Step   6  dist=0.2629  [BaseEntity + NamedEntity]  +  Person
+Step   7  dist=0.2636  [[[[package-info + package-info] + package-info] + package-info] + PetClinicApplication]  +  PetClinicRuntimeHints
+Step   8  dist=0.2820  [[[[[package-info + package-info] + package-info] + package-info] + PetClinicApplication] + PetClinicRuntimeHints]  +  WelcomeController
+Step   9  dist=0.2866  Owner  +  OwnerRepository
+Step  10  dist=0.2909  [[[[[[package-info + package-info] + package-info] + package-info] + PetClinicApplication] + PetClinicRuntimeHints] + WelcomeController]  +  PetType
+Step  11  dist=0.2909  Specialty  +  Vets
+Step  12  dist=0.2971  [[BaseEntity + NamedEntity] + Person]  +  package-info
+Step  13  dist=0.3036  Vet  +  VetRepository
+Step  14  dist=0.3077  CacheConfiguration  +  CrashController
+Step  15  dist=0.3079  PetTypeFormatter  +  PetValidator
+Step  16  dist=0.3093  [CacheConfiguration + CrashController]  +  WebConfiguration
+Step  17  dist=0.3105  [PetTypeFormatter + PetValidator]  +  PetTypeRepository
+Step  18  dist=0.3181  [[[[[[[package-info + package-info] + package-info] + package-info] + PetClinicApplication] + PetClinicRuntimeHints] + WelcomeController] + PetType]  +  [Specialty + Vets]
+Step  19  dist=0.3322  [[[[[[[[package-info + package-info] + package-info] + package-info] + PetClinicApplication] + PetClinicRuntimeHints] + WelcomeController] + PetType] + [Specialty + Vets]]  +  [[[BaseEntity + NamedEntity] + Person] + package-info]
+Step  20  dist=0.3477  [[[[[[[[[package-info + package-info] + package-info] + package-info] + PetClinicApplication] + PetClinicRuntimeHints] + WelcomeController] + PetType] + [Specialty + Vets]] + [[[BaseEntity + NamedEntity] + Person] + package-info]]  +  [[PetTypeFormatter + PetValidator] + PetTypeRepository]
+Step  21  dist=0.3576  [[[[[[[[[[package-info + package-info] + package-info] + package-info] + PetClinicApplication] + PetClinicRuntimeHints] + WelcomeController] + PetType] + [Specialty + Vets]] + [[[BaseEntity + NamedEntity] + Person] + package-info]] + [[PetTypeFormatter + PetValidator] + PetTypeRepository]]  +  [[CacheConfiguration + CrashController] + WebConfiguration]
+Step  22  dist=0.5621  Pet  +  Visit
+Step  23  dist=0.5972  OwnerController  +  PetController
+Step  24  dist=0.6145  [Owner + OwnerRepository]  +  [Pet + Visit]
+Step  25  dist=0.6233  [OwnerController + PetController]  +  VisitController
